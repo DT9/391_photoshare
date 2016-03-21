@@ -44,7 +44,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">SB Admin</a>
+                <a class="navbar-brand" href="index.html">Photoshare Admin</a>
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
@@ -58,7 +58,7 @@
                                         <img class="media-object" src="http://placehold.it/50x50" alt="">
                                     </span>
                                     <div class="media-body">
-                                        <h5 class="media-heading"><strong>John Smith</strong>
+                                        <h5 class="media-heading"><strong>Admin</strong>
                                         </h5>
                                         <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
                                         <p>Lorem ipsum dolor sit amet, consectetur...</p>
@@ -200,11 +200,6 @@
                         <h1 class="page-header">
                             Dashboard <small>Statistics Overview</small>
                         </h1>
-                        <ol class="breadcrumb">
-                            <li class="active">
-                                <i class="fa fa-dashboard"></i> Dashboard
-                            </li>
-                        </ol>
                     </div>
                 </div>
                 <!-- /.row -->
@@ -219,7 +214,7 @@
                                     </div>
                                     <div class="col-xs-9 text-right">
                                         <div class="huge">26</div>
-                                        <div>New Comments!</div>
+                                        <div>No of Users</div>
                                     </div>
                                 </div>
                             </div>
@@ -241,7 +236,7 @@
                                     </div>
                                     <div class="col-xs-9 text-right">
                                         <div class="huge">12</div>
-                                        <div>New Tasks!</div>
+                                        <div>No of Images</div>
                                     </div>
                                 </div>
                             </div>
@@ -263,7 +258,7 @@
                                     </div>
                                     <div class="col-xs-9 text-right">
                                         <div class="huge">124</div>
-                                        <div>New Orders!</div>
+                                        <div>No of Groups</div>
                                     </div>
                                 </div>
                             </div>
@@ -285,7 +280,7 @@
                                     </div>
                                     <div class="col-xs-9 text-right">
                                         <div class="huge">13</div>
-                                        <div>Support Tickets!</div>
+                                        <div>No of Persons</div>
                                     </div>
                                 </div>
                             </div>
@@ -328,7 +323,8 @@
                                                 <option>Month</option>
                                                 <option>Day</option>
                                             </select>
-                                        </div>
+                                    </div>
+                                <button class="btn btn-info btn-lg col-lg-12">Graph</button>
                             </div>
                         </div>
                     </div>
