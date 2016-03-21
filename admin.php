@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-
+<!--http://startbootstrap.com/template-overviews/sb-admin-2/-->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -210,16 +210,6 @@
                 <!-- /.row -->
 
                 <div class="row">
-                    <div class="col-lg-12">
-                        <div class="alert alert-info alert-dismissable">
-                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                            <i class="fa fa-info-circle"></i>  <strong>Like SB Admin?</strong> Try out <a href="http://startbootstrap.com/template-overviews/sb-admin-2" class="alert-link">SB Admin 2</a> for additional features!
-                        </div>
-                    </div>
-                </div>
-                <!-- /.row -->
-
-                <div class="row">
                     <div class="col-lg-3 col-md-6">
                         <div class="panel panel-primary">
                             <div class="panel-heading">
@@ -310,7 +300,39 @@
                     </div>
                 </div>
                 <!-- /.row -->
-
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title"><i class="fa fa-bar-chart-o fa-fw"></i> OLAP Report</h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="form-group col-lg-4">
+                                            <label>Users</label>
+                                            <select class="form-control">
+                                                <option>1</option>
+                                                <option>5</option>
+                                            </select>
+                                        </div>
+                                    <div class="form-group col-lg-4">
+                                            <label>Subject</label>
+                                            <select class="form-control">
+                                                <option>1</option>
+                                                <option>2</option>
+                                            </select>
+                                        </div>
+                                    <div class="form-group col-lg-4">
+                                            <label>Period</label>
+                                            <select class="form-control">
+                                                <option>Year</option>
+                                                <option>Month</option>
+                                                <option>Day</option>
+                                            </select>
+                                        </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="panel panel-default">
@@ -473,14 +495,14 @@
     <!-- jQuery -->
 </body>
 <?php
-//DB connect
+
+/*//DB connect
 //Display # image for ea user,subj and/or period/time(wk,mth,yr)
 //display the number of images for each user; or display the number of images for each subject for each month.
-
     The user must be able to perform generalization (roll up) and specialization (drill down)  on three levels of time hierarchies,  i.e., weekly, monthly, and yearly.
 
     To speed up the OLAP operations, one might materialize the data cube information by creating a fact table/view storing all  information needed, including the lowest level of time hierarchy.
-
+*/
 ?>
 
 <script type="text/javascript">
