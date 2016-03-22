@@ -64,12 +64,26 @@ p {
 <div class="col-md-5" >
 <form class="form-horizontal">
 <fieldset>
+<!-- login username and password start-->  
+        <form name="registration" method="post" action="index.php">
+            CCID : <input type="text" name="jianletang"/> <br/><!-- not name=null value --> 
+            Name : <input type="text" name="jianletang"/><br/>
+            <input type="submit" name="validate" value="OK"/>
+        </form>
 
-  <input id="textinput" name="textinput" type="text" placeholder="Enter User Name" class="form-control input-md"><br>
+
+
+
+
+
+<form name="login_table" action="index.php">
+
+  <input id="textinput" name="textinput" type="text" placeholder="Enter User Name"><br>
   <input id="textinput" name="textinput" type="text" placeholder="Enter Password" class="form-control input-md">
-  <button id="singlebutton" name="singlebutton" class="btn btn-info btn-sm pull-right">Register</button>
+  <button id="singlebutton" type="submit">Sign In</button>
 
-
+</form>
+<!-- login username and password end-->  
 </fieldset>
 </form>
 </div>
