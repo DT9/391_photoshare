@@ -146,5 +146,5 @@ function saveimage($name,$image, $thumbnail){
       oci_close($conn);
     
  
-
+}
 ?>

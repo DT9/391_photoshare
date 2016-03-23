@@ -1,6 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
+<?php
+include("connection_database.php");
+$conn=connect();
 
+function getres($sql,$conn) {
+    $stid = oci_parse($conn,$sql);
+    $res = oci_execute($stid);
+    while (($row = oci_fetch_array($stid, OCI_ASSOC))) {
+        foreach($row as$item)   {
+            echo '<option>'.$item.'</option>';
+        }
+    }
+}
+?>
 <head>
 <!--http://startbootstrap.com/template-overviews/sb-admin-2/-->
     <meta charset="utf-8">
@@ -304,27 +317,31 @@
                             <div class="panel-body">
                                 <div class="form-group col-lg-4">
                                             <label>Users</label>
-                                            <select class="form-control">
-                                                <option>1</option>
-                                                <option>5</option>
+                                            <select id="user" class="form-control">
+                                                <option>All</option>
+                                                <?php
+                                                    getres("select user_name from users",$conn);
+                                                ?>
                                             </select>
                                         </div>
                                     <div class="form-group col-lg-4">
                                             <label>Subject</label>
-                                            <select class="form-control">
-                                                <option>1</option>
-                                                <option>2</option>
+                                            <select id="subj" class="form-control">
+                                                <option>All</option>
+                                                <?php
+                                                    getres("select distinct subject from images",$conn);
+                                                ?>
                                             </select>
                                         </div>
                                     <div class="form-group col-lg-4">
                                             <label>Period</label>
-                                            <select class="form-control">
+                                            <select id="period" class="form-control">
                                                 <option>Year</option>
                                                 <option>Month</option>
                                                 <option>Day</option>
                                             </select>
                                     </div>
-                                <button class="btn btn-info btn-lg col-lg-12">Graph</button>
+                                <button class="btn btn-info btn-lg col-lg-12" onclick="ajaxgraph(this)">Graph</button>
                             </div>
                         </div>
                     </div>
@@ -333,7 +350,7 @@
                     <div class="col-lg-12">
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                <h3 class="panel-title"><i class="fa fa-bar-chart-o fa-fw"></i> Area Chart</h3>
+                                <h3 class="panel-title"><i class="fa fa-bar-chart-o fa-fw"></i> Number of Images Chart</h3>
                             </div>
                             <div class="panel-body">
                                 <div id="morris-area-chart"></div>
@@ -490,19 +507,46 @@
     <!-- /#wrapper -->
     <!-- jQuery -->
 </body>
-<?php
 
-/*//DB connect
-//Display # image for ea user,subj and/or period/time(wk,mth,yr)
-//display the number of images for each user; or display the number of images for each subject for each month.
-    The user must be able to perform generalization (roll up) and specialization (drill down)  on three levels of time hierarchies,  i.e., weekly, monthly, and yearly.
 
-    To speed up the OLAP operations, one might materialize the data cube information by creating a fact table/view storing all  information needed, including the lowest level of time hierarchy.
-*/
-?>
 
 <script type="text/javascript">
-    Morris.Area({
+function ajaxgraph(str) {
+    $("#morris-area-chart").html("");
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function() {
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+            var txt = xmlhttp.responseText;
+            $("#morris-area-chart").html(txt);
+        }
+    };
+    var user = $('#user').find(":selected").text();
+    var subj = $('#subj').find(":selected").text();
+    var date = $('#period').find(":selected").text();
+    xmlhttp.open("GET", "datacube.php?user="+user+"&subj="+subj+"&date="+date, true);
+    xmlhttp.send();
+
+
+}
+    /*
+            Morris.Area({
+                element: 'morris-area-chart',
+                data: [{
+                    period: '2010 Q1',
+                    user:4
+                }, {
+                    period: '2010 Q2',
+                    user:9
+                }],
+                xkey: 'period',
+                ykeys: ['user'],
+                labels:['name'],
+                pointSize: 2,
+                hideHover: 'auto',
+                resize: true
+            });
+
+        Morris.Area({
         element: 'morris-area-chart',
         data: [{
             period: '2010 Q1',
@@ -561,6 +605,8 @@
         pointSize: 2,
         hideHover: 'auto',
         resize: true
-    });</script>
+    });
+    */
+    </script>
 
 </html>
