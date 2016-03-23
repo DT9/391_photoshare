@@ -1,4 +1,5 @@
 <?php
+<<<<<<< HEAD
 include("connection_database.php");
 ?>
 <html>
@@ -22,7 +23,7 @@ include("connection_database.php");
 	    }
  	///////////////////////////////////////////////////////////////////////////////////
  	//checking if username and password in system 
- 		 //$sql='select count(*) from Users where user_name=\''.$user.'\' and password=\''.$pswd.'\'';
+ 		 $sql='select count(*) from Users where user_name=\''.$user.'\' and password=\''.$pswd.'\'';
  		 $sql='select count(*) from Users where user_name=\''.$user.'\'';
  		          
 	    echo $sql;
@@ -68,3 +69,10 @@ include("connection_database.php");
 	?>
     </body>
 </html>
+=======
+
+?>
+<body>
+<img src="pullimage.php?id=1" width="175" height="200" />
+</body>
+>>>>>>> 24579cfff215e1191db448db98685137f6c88bd8
