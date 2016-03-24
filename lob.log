@@ -1,5 +1,5 @@
 
-SQL*Loader: Release 12.1.0.2.0 - Production on Thu Mar 24 14:15:41 2016
+SQL*Loader: Release 12.1.0.2.0 - Production on Thu Mar 24 14:28:43 2016
 
 Copyright (c) 1982, 2014, Oracle and/or its affiliates.  All rights reserved.
 
@@ -54,8 +54,8 @@ Total logical records read:             3
 Total logical records rejected:         0
 Total logical records discarded:        0
 
-Run began on Thu Mar 24 14:15:41 2016
-Run ended on Thu Mar 24 14:15:41 2016
+Run began on Thu Mar 24 14:28:43 2016
+Run ended on Thu Mar 24 14:28:43 2016
 
-Elapsed time was:     00:00:00.19
+Elapsed time was:     00:00:00.11
 CPU time was:         00:00:00.03

@@ -336,9 +336,9 @@ function getres($sql,$conn) {
                                     <div class="form-group col-lg-4">
                                             <label>Period</label>
                                             <select id="period" class="form-control">
-                                                <option>Year</option>
-                                                <option>Month</option>
-                                                <option>Day</option>
+                                                <option>year</option>
+                                                <option>month</option>
+                                                <option>week</option>
                                             </select>
                                     </div>
                                 <button class="btn btn-info btn-lg col-lg-12" onclick="ajaxgraph(this)">Graph</button>

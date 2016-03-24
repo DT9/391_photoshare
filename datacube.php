@@ -42,7 +42,8 @@ $sql.=" from images where ";
 
 $sql.=" group by ";
 
-$stp = "select owner_name,subject,timing,count(*) from images group by cube(owner_name,subject,timing)";
+$stp = "SELECT owner_name,subject,timing, tyear, tmonth, tweek, image_count 
+		FROM data_cube";
 
 $stid = oci_parse($conn,$stp);
 $res = oci_execute($stid);
@@ -55,6 +56,9 @@ while (($row = oci_fetch_array($stid, OCI_ASSOC))) {
 }
 
 /*
+where owner_name= " + user
+							+ " and subject =" + subj
+							+ " and tyear is null";
    photo_id    int,
    owner_name  varchar(24),
    permitted   int,
