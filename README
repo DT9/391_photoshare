@@ -1,0 +1,3 @@
+clone into webdocs
+chmod 755 setup.sh
+./setup.sh
