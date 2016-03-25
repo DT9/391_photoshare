@@ -1,18 +1,27 @@
 <?php
 //http://stackoverflow.com/questions/7793009/how-to-retrieve-images-from-mysql-database-and-display-in-an-html-tag
+//Make sure there is no whitespace before <?php and no echo statements in the script, because otherwise the wrong HTTP header will be sent and the browser won't display the image properly. If you have problems, comment out the header() function call and see what is displayed.
 
-  $id = $_GET['id'];
-  // do some validation here to ensure id is safe
-include("connection_database.php");
-$conn=connect();
+//how to use <img src="pullimage.php?id=1&type=thumbnail" width="175" height="200" />
 
-  $sql = "SELECT thumbnail FROM images WHERE photo_id=$id";
-  $stid = oci_parse($conn,$sql);
-$res = oci_execute($stid);
-$row = oci_fetch_array($stid, OCI_ASSOC);
+// do some validation here to ensure id is safe
+	$myblobid = $_GET['id'];;
+	$myimgtype = $_GET['type'];
 
-  header("Content-type: image/jpeg");
-  echo $row['thumbnail'];
 
+	include("connection_database.php");
+	$conn=connect();
+	$query = "SELECT ".$myimgtype." FROM images WHERE photo_id= :MYBLOBID";
+	$stmt = oci_parse ($conn, $query);
+	oci_bind_by_name($stmt, ':MYBLOBID', $myblobid);
+	oci_execute($stmt);
+	$arr = oci_fetch_array($stmt, OCI_ASSOC);
+	$myimgtype = strtoupper($myimgtype);
+	$result = $arr[$myimgtype]->load();
+
+	header("Content-type: image/JPEG");
+	echo $result;
+
+	oci_close($conn);
 
 ?>
