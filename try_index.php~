@@ -1,5 +1,4 @@
 <?php
-<<<<<<< HEAD
 include("connection_database.php");
 ?>
 <html>
@@ -10,7 +9,7 @@ include("connection_database.php");
             //get the input
             $user=$_POST['username'];
             $pswd=$_POST['password'];
-            //if($user==''||$pswd==''){echo 'error';}
+            //if($ccid==''||$name==''){echo 'error';}
 			
 	    ini_set('display_errors', 1);
 	    error_reporting(E_ALL);
@@ -22,33 +21,29 @@ include("connection_database.php");
     		trigger_error(htmlentities($e['message'], ENT_QUOTES), E_USER_ERROR);
 	    }
  	///////////////////////////////////////////////////////////////////////////////////
- 	//checking if username and password in system 
+ 	//checking if username in system 
  		 $sql='select count(*) from Users where user_name=\''.$user.'\' and password=\''.$pswd.'\'';
- 		 $sql='select count(*) from Users where user_name=\''.$user.'\'';
- 		          
+ 		 //$sql='select * from Student;';	          
 	    echo $sql;
 	    //Prepare sql using conn and returns the statement identifier
 	    $stid = oci_parse($conn, $sql);
 	    
 	    //Execute a statement returned from oci_parse()
 	    $res=oci_execute($stid);
-	    $r='1';
-	    while ($row=oci_fetch_array($stid,OCI_BOTH)){$r= $row[1];}
+	    
+	    while ($row=oci_fetch_array($stid,OCI_BOTH)){$r= $row[0];}
 	    //$row=oci_fetch_array($stid,OCI_BOTH)
-	    //echo $r;
 	    oci_free_statement($stid);
 	    oci_close($conn);
-	    echo "r is $r";
-      /*
+      
 	    $result=FALSE;
-	    if ($r=='0'){ $result=TRUE;}
+	    if ($r[0]=="0"){ $result=TRUE;}
 	    echo $result;
 	    if ($result){
 	    	header("location:http://consort.cs.ualberta.ca/~jianle/database_site/391_photoshare/new_index.html");
 		 	echo "error";	    
 	    	exit;
 	    }
-	    */
 	    echo "good good";
 	    
 	    
@@ -69,10 +64,3 @@ include("connection_database.php");
 	?>
     </body>
 </html>
-=======
-
-?>
-<body>
-<img src="pullimage.php?id=1" width="175" height="200" />
-</body>
->>>>>>> 24579cfff215e1191db448db98685137f6c88bd8

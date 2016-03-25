@@ -5,12 +5,30 @@
 <?php
 //GG
 //http://stackoverflow.com/questions/24895170/multiple-image-upload-php-form-with-one-input
+<<<<<<< HEAD
 //http://php.net/manual/en/function.oci-connect.
 include("connection_database.php");
 include("scaleimage.php");
 echo "<center>Hello World!</center><br/>";
 $check = count($_FILES['image']['name']);
     
+=======
+//http://php.net/manual/en/function.oci-connect.php
+    
+    
+    
+$username = "chengyao";
+$password = "chengyao00308900";
+// Connects to the XE service (i.e. database) on the "localhost" machine
+$conn = oci_connect($username,$password);
+    
+if (!$conn) {
+    $e = oci_error();
+    trigger_error(htmlentities($e['message'], ENT_QUOTES), E_USER_ERROR);
+}
+
+        
+>>>>>>> a061f3be49de0e666bf8d8bbf2c525ed10723898
 for($i=0; $i<count($_FILES['image']['name']); $i++) {
 	echo "shiiit";
     if(isset($_FILES["image"])) {
@@ -48,39 +66,7 @@ for($i=0; $i<count($_FILES['image']['name']); $i++) {
         }
     }
 }
-    
-/*
-    extract($_POST);
-    $error=array();
-    $extension=array("jpeg","jpg","png","gif");
-    foreach($_FILES["files"]["tmp_name"] as $key=>$tmp_name)
-    {
-        $file_name=$_FILES["files"]["name"][$key];
-        $file_tmp=$_FILES["files"]["tmp_name"][$key];
-        $ext=pathinfo($file_name,PATHINFO_EXTENSION);
-        if(in_array($ext,$extension))
-        {
-            if(!file_exists("photo_gallery/".$txtGalleryName."/".$file_name))
-            {
-                move_uploaded_file($file_tmp=$_FILES["files"]["tmp_name"][$key],"photo_gallery/".$txtGalleryName."/".$file_name);
-            }
-            else
-            {
-                $filename=basename($file_name,$ext);
-                $newFileName=$filename.time().".".$ext;
-                move_uploaded_file($file_tmp=$_FILES["files"]["tmp_name"][$key],"photo_gallery/".$txtGalleryName."/".$newFileName);
-            }
-        }
-        else
-        {
-            array_push($error,"$file_name, ");
-        }
-    }
-
-    */
-    
-    
-    
+        
     
 function saveimage($image, $thumbnail){
     $conn = connect();
@@ -120,5 +106,10 @@ function saveimage($image, $thumbnail){
       oci_close($conn);
  }
  
+<<<<<<< HEAD
 
 ?>
+=======
+}
+?>
+>>>>>>> a061f3be49de0e666bf8d8bbf2c525ed10723898

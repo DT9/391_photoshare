@@ -1,5 +1,4 @@
 <?php
-<<<<<<< HEAD
 include("connection_database.php");
 ?>
 <html>
@@ -69,10 +68,4 @@ include("connection_database.php");
 	?>
     </body>
 </html>
-=======
 
-?>
-<body>
-<img src="pullimage.php?id=1" width="175" height="200" />
-</body>
->>>>>>> 24579cfff215e1191db448db98685137f6c88bd8

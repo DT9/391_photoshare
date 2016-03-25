@@ -1,12 +1,12 @@
 <html>
     <body>
          <h1>Welcome to CMPUT 391</h1>
-        <form name="registration" method="post" action="index.php">
-            Username : <input type="text" name="fdsfds"/> <br/><!-- not name=null value --> 
-            Password : <input type="text" name="jianletang"/><br/>
+        <form name="registration" method="post" action="try_index.php">
+            Username : <input type="text" name="username"/> <br/><!-- not name=null value --> 
+            Password : <input type="text" name="password"/><br/>
             <input type="submit" name="validate" value="OK"/>
         </form>
         
-        <a href="http://consort.cs.ualberta.ca/~jianle/database_site/391_photoshare/signup.php">Create New Account?</a>
+        <a href="http://consort.cs.ualberta.ca/~jianle/database_site/391_photoshare/signup.html">Create New Account?</a>
     </body>
 </html>

@@ -1,0 +1,61 @@
+
+SQL*Loader: Release 12.1.0.2.0 - Production on Fri Mar 25 12:45:40 2016
+
+Copyright (c) 1982, 2014, Oracle and/or its affiliates.  All rights reserved.
+
+Control File:   lob.ctl
+Data File:      lob.txt
+  Bad File:     lob.bad
+  Discard File:  none specified
+ 
+ (Allow all discards)
+
+Number to load: ALL
+Number to skip: 0
+Errors allowed: 50
+Bind array:     64 rows, maximum of 256000 bytes
+Continuation:    none specified
+Path used:      Conventional
+
+Table IMAGES, loaded from every logical record.
+Insert option in effect for this table: INSERT
+
+   Column Name                  Position   Len  Term Encl Datatype
+------------------------------ ---------- ----- ---- ---- ---------------------
+PHOTO_ID                            FIRST    10   ,       CHARACTER            
+OWNER_NAME                           NEXT    24   ,       CHARACTER            
+PERMITTED                            NEXT    10   ,       CHARACTER            
+SUBJECT                              NEXT   128   ,       CHARACTER            
+PLACE                                NEXT   128   ,       CHARACTER            
+TIMING                               NEXT     *   ,       DATE DD-MON-RR       
+DESCRIPTION                          NEXT  2048   ,       CHARACTER            
+T_FILENAME                           NEXT   100   ,       CHARACTER            
+  (FILLER FIELD)
+R_FILENAME                           NEXT   100   ,       CHARACTER            
+  (FILLER FIELD)
+THUMBNAIL                         DERIVED     *  EOF      CHARACTER            
+    Dynamic LOBFILE.  Filename in field T_FILENAME
+PHOTO                             DERIVED     *  EOF      CHARACTER            
+    Dynamic LOBFILE.  Filename in field R_FILENAME
+
+
+Table IMAGES:
+  3 Rows successfully loaded.
+  0 Rows not loaded due to data errors.
+  0 Rows not loaded because all WHEN clauses were failed.
+  0 Rows not loaded because all fields were null.
+
+
+Space allocated for bind array:                 180608 bytes(64 rows)
+Read   buffer bytes: 1048576
+
+Total logical records skipped:          0
+Total logical records read:             3
+Total logical records rejected:         0
+Total logical records discarded:        0
+
+Run began on Fri Mar 25 12:45:40 2016
+Run ended on Fri Mar 25 12:45:40 2016
+
+Elapsed time was:     00:00:00.12
+CPU time was:         00:00:00.04
