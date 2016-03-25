@@ -5,30 +5,21 @@
 <?php
 //GG
 //http://stackoverflow.com/questions/24895170/multiple-image-upload-php-form-with-one-input
-<<<<<<< HEAD
+
 //http://php.net/manual/en/function.oci-connect.
 include("connection_database.php");
 include("scaleimage.php");
 echo "<center>Hello World!</center><br/>";
 $check = count($_FILES['image']['name']);
     
-=======
-//http://php.net/manual/en/function.oci-connect.php
-    
-    
-    
-$username = "chengyao";
-$password = "chengyao00308900";
-// Connects to the XE service (i.e. database) on the "localhost" machine
-$conn = oci_connect($username,$password);
-    
+     $conn = connect();   
 if (!$conn) {
     $e = oci_error();
     trigger_error(htmlentities($e['message'], ENT_QUOTES), E_USER_ERROR);
 }
 
         
->>>>>>> a061f3be49de0e666bf8d8bbf2c525ed10723898
+
 for($i=0; $i<count($_FILES['image']['name']); $i++) {
 	echo "shiiit";
     if(isset($_FILES["image"])) {
@@ -69,7 +60,7 @@ for($i=0; $i<count($_FILES['image']['name']); $i++) {
         
     
 function saveimage($image, $thumbnail){
-    $conn = connect();
+
     /*
     $stmt = oci_parse($conn, "select * from images");
     oci_execute($stmt);
@@ -106,10 +97,6 @@ function saveimage($image, $thumbnail){
       oci_close($conn);
  }
  
-<<<<<<< HEAD
+
 
 ?>
-=======
-}
-?>
->>>>>>> a061f3be49de0e666bf8d8bbf2c525ed10723898
