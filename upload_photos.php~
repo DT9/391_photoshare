@@ -14,12 +14,11 @@ $check = count($_FILES['image']['name']);
 for($i=0; $i<count($_FILES['image']['name']); $i++) {
 	echo "shiiit";
     if(isset($_FILES["image"])) {
-        @list($w,$h , $imtype, ) = getimagesize($_FILES['image']['tmp_name'][$i]);
+        @list(, , $imtype, ) = getimagesize($_FILES['image']['tmp_name'][$i]);
         // Get image type.
         // We use @ to omit errors
         echo"image type = $imtype   ";
         echo"number of files = $i   ";
-        echo"width is = $w   and height is = $h      ";
         if ($imtype == 3){ // cheking image type
             $ext="png";
         }

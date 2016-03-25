@@ -34,7 +34,7 @@
                 <form action="upload_photos.php" method="post" enctype="multipart/form-data">
                     <div class="text-center">
                         <div>Select Photo (one or multiple):</div>
-                        <input class="butt" type="file" name="image[]" multiple="multipe" id="image" style="dispay:none"/> Note: Supported image format: .jpeg, .jpg, .png, .gif
+                        <input type="file" name="image[]" multiple="multipe" id="image" style="dispay:none"/> Note: Supported image format: .jpeg, .jpg, .png, .gif
                         <br><input type="submit" value="Upload Image" id="selectedButton" />
                     </div>
                 </form>
