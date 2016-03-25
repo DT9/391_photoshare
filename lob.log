@@ -1,5 +1,5 @@
 
-SQL*Loader: Release 12.1.0.2.0 - Production on Fri Mar 25 13:33:03 2016
+SQL*Loader: Release 12.1.0.2.0 - Production on Fri Mar 25 17:07:42 2016
 
 Copyright (c) 1982, 2014, Oracle and/or its affiliates.  All rights reserved.
 
@@ -40,7 +40,7 @@ PHOTO                             DERIVED     *  EOF      CHARACTER
 
 
 Table IMAGES:
-  3 Rows successfully loaded.
+  8 Rows successfully loaded.
   0 Rows not loaded due to data errors.
   0 Rows not loaded because all WHEN clauses were failed.
   0 Rows not loaded because all fields were null.
@@ -50,12 +50,12 @@ Space allocated for bind array:                 180608 bytes(64 rows)
 Read   buffer bytes: 1048576
 
 Total logical records skipped:          0
-Total logical records read:             3
+Total logical records read:             8
 Total logical records rejected:         0
 Total logical records discarded:        0
 
-Run began on Fri Mar 25 13:33:03 2016
-Run ended on Fri Mar 25 13:33:03 2016
+Run began on Fri Mar 25 17:07:42 2016
+Run ended on Fri Mar 25 17:07:42 2016
 
-Elapsed time was:     00:00:00.16
-CPU time was:         00:00:00.04
+Elapsed time was:     00:00:00.29
+CPU time was:         00:00:00.02

@@ -1,4 +1,4 @@
 <body>
-<img src="pullimage.php?id=1" width="175" height="200" />
+<img src="pullimage.php?id=1&type=photo"  />
 
 </body>

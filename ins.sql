@@ -129,13 +129,13 @@ INSERT INTO group_lists VALUES (4, 'marilyn', TO_DATE('11/01/2011 12:12:12', 'DD
 INSERT INTO group_lists VALUES (4, 'donald', TO_DATE('12/01/2011 12:12:12', 'DD/MM/YYYY hh24:mi:ss'),'notice me senpai4');
 INSERT INTO group_lists VALUES (5, 'nathaniel', TO_DATE('01/01/2011 12:12:12', 'DD/MM/YYYY hh24:mi:ss'),'notice me senpai5');
 
---MAKE DATA CUBE
+--MAKE DUH DATA CUBE
 create view data_cube as 
-   select owner_name, subject, timing, extract(year from timing) as tYear, extract(month from timing) 
-   as tMonth, trunc(timing, 'w')as tWeek, count(*)  as image_count 
+   select owner_name, subject, extract(year from timing) as tYear, extract(month from timing) 
+   as tMonth, to_number(to_char(timing,'WW')) as tWeek, count(*) as image_count 
    from images 
    group by cube (owner_name, subject, timing, extract(year from timing), 
-      extract(month from timing), trunc(timing, 'w'));
+      extract(month from timing), to_number(to_char(timing,'WW')));
 
 --INDEXES MAN
 create index name_index on images(owner_name) indextype is ctxsys.context;

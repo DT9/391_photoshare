@@ -319,26 +319,25 @@ function getres($sql,$conn) {
                                             <label>Users</label>
                                             <select id="user" class="form-control">
                                                 <option>All</option>
-                                                <?php
-                                                    getres("select user_name from users",$conn);
-                                                ?>
+                                                <option>None</option>
+
                                             </select>
                                         </div>
                                     <div class="form-group col-lg-4">
                                             <label>Subject</label>
                                             <select id="subj" class="form-control">
                                                 <option>All</option>
-                                                <?php
-                                                    getres("select distinct subject from images",$conn);
-                                                ?>
+                                                <option>None</option>
+
                                             </select>
                                         </div>
                                     <div class="form-group col-lg-4">
                                             <label>Period</label>
                                             <select id="period" class="form-control">
-                                                <option>year</option>
-                                                <option>month</option>
-                                                <option>week</option>
+                                                <option>Year</option>
+                                                <option>Month</option>
+                                                <option>Week</option>
+                                                <option>None</option>
                                             </select>
                                     </div>
                                 <button class="btn btn-info btn-lg col-lg-12" onclick="ajaxgraph(this)">Graph</button>
@@ -517,7 +516,10 @@ function ajaxgraph(str) {
     xmlhttp.onreadystatechange = function() {
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
             var txt = xmlhttp.responseText;
+            
             $("#morris-area-chart").html(txt);
+
+
         }
     };
     var user = $('#user').find(":selected").text();
@@ -526,8 +528,69 @@ function ajaxgraph(str) {
     xmlhttp.open("GET", "datacube.php?user="+user+"&subj="+subj+"&date="+date, true);
     xmlhttp.send();
 
-
 }
+Morris.Area({
+        element: 'morris-area-chart',
+        data: [{
+            period: '2010 Q1',
+            iphone: 2666,
+            ipad: null,
+            itouch: 2647
+        }, {
+            period: '2010 Q2',
+            iphone: 2778,
+            ipad: 2294,
+            itouch: 2441
+        }, {
+            period: '2010 Q3',
+            iphone: 4912,
+            ipad: 1969,
+            itouch: 2501
+        }, {
+            period: '2010 Q4',
+            iphone: 3767,
+            ipad: 3597,
+            itouch: 5689
+        }, {
+            period: '2011 Q1',
+            iphone: 6810,
+            ipad: 1914,
+            itouch: 2293
+        }, {
+            period: '2011 Q2',
+            iphone: 5670,
+            ipad: 4293,
+            itouch: 1881
+        }, {
+            period: '2011 Q3',
+            iphone: 4820,
+            ipad: 3795,
+            itouch: 1588
+        }, {
+            period: '2011 Q4',
+            iphone: 15073,
+            ipad: 5967,
+            itouch: 5175
+        }, {
+            period: '2012 Q1',
+            iphone: 10687,
+            ipad: 4460,
+            itouch: 2028
+        }, {
+            period: '2012 Q2',
+            iphone: 8432,
+            ipad: 5713,
+            itouch: 1791
+        }],
+        xkey: 'period',
+        xLabels: 'month',
+        ykeys: ['iphone', 'ipad', 'itouch'],
+        labels: ['iPhone', 'iPad', 'iPod Touch'],
+        pointSize: 2,
+        hideHover: 'auto',
+        resize: true
+    });
+
     /*
             Morris.Area({
                 element: 'morris-area-chart',
@@ -606,6 +669,8 @@ function ajaxgraph(str) {
         hideHover: 'auto',
         resize: true
     });
+
+    SELECT unique owner_name,tYear,tMonth,tWeek,image_count FROM data_cube where owner_name is null and subject is null and tyear is not null and tmonth is null and tWeek is null;
     */
     </script>
 
