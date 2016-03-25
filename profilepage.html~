@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
 
-            <link rel="stylesheet" type="text/css" href="st1.css">    <link rel="stylesheet" type="text/css" href="lightview.css">
+            <link rel="stylesheet" type="text/css" href="consort.cs.ulaberta.ca/~chengyao/391_photoshare/st1.css">    <link rel="stylesheet" type="text/css" href="consort.cs.ulaberta.ca/~chengyao/391_photoshare/lightview.css">
                     
                     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
                 <style></style>
@@ -17,14 +17,14 @@
             <div id="cabecera">
                 <div id="logo">
                     
-                    <h1><a id="top" href="mainpage.html">PHOTOSHARE</a></h1>
+                    <h1><a id="top" href="consort.cs.ulaberta.ca/~chengyao/391_photoshare/mainpage.html">PHOTOSHARE</a></h1>
                 </div>
                 <div id="nav">
                     <ul>
-                        <li><a href="mainpage.html">HOME</a></li>
-                        <li><a href="profilepage.html">PROFILE</a></li>
-                        <li><a href="search.html">SEARCH</a></li>
-                        <li><a href="new_index.html">LOGOUT</a></li>
+                        <li><a href="consort.cs.ulaberta.ca/~chengyao/391_photoshare/mainpage.html">HOME</a></li>
+                        <li><a href="consort.cs.ulaberta.ca/~chengyao/391_photoshare/profilepage.html">PROFILE</a></li>
+                        <li><a href="consort.cs.ulaberta.ca/~chengyao/391_photoshare/search.html">SEARCH</a></li>
+                        <li><a href="/new_index.html">LOGOUT</a></li>
                     </ul>
                 </div>
                 <div id="search_form"><form action="/search.php" method="get"><input name="s" type="text" size="9" maxlength="30">
@@ -41,7 +41,7 @@
                         <ul>
                             <li><a href="javascript:void(0);"
                                 NAME="My Window Name"  title=" My title here "
-                                onClick=window.open("uploadwindow.html","Ratting","width=550,height=700,0,status=0,scrollbars=1");>--UPLOAD--</a></li>
+                                onClick=window.open("consort.cs.ulaberta.ca/~chengyao/391_photoshare/uploadwindow.html","Ratting","width=550,height=700,0,status=0,scrollbars=1");>--UPLOAD--</a></li>
                             
                         </ul>
                     </div>
@@ -68,7 +68,7 @@
                     
                     <div id="pie_l">
                         <ul>
-                            <li><a href="mainpage.html">HOME</a></li>
+                            <li><a href="consort.cs.ulaberta.ca/~chengyao/391_photoshare/mainpage.html">HOME</a></li>
                         </ul>
                     </div>
                     <div id="pie_r">
