@@ -6,18 +6,21 @@
 
 // do some validation here to ensure id is safe
 	$freq = $_GET['freq'];;
+	$from = $_GET['from'];;
+	$to = $_GET['to'];;
+	$search = $_GET['search'];;
+
+
 	include("connection_database.php");
 	$conn=connect();
-	
-	$query = "SELECT photo_id FROM images";
+
+	$query = "SELECT photo_id FROM images"; //select photo_id MAX(photo_count) from photo_count group by photo_id
 
 	$stmt = oci_parse ($conn, $query);
 	oci_execute($stmt);
 	while ($arr = oci_fetch_array($stmt, OCI_ASSOC)){
-		$myimgtype = strtoupper($myimgtype);
 		$id = $arr['PHOTO_ID'];
-		header("Content-type: image/JPEG");
-		echo '<a href=""><img src="pullimage.php?id='.$id.'&type=thumbnail" width="175" height="200" /></a>';
+		echo '<a href="display.php?id='.$id.'"><img src="pullimage.php?id='.$id.'&type=thumbnail" width="175" height="200" /></a>';
 		}
 	oci_close($conn);
 

@@ -1,27 +1,150 @@
-<?php
-//http://stackoverflow.com/questions/7793009/how-to-retrieve-images-from-mysql-database-and-display-in-an-html-tag
-//Make sure there is no whitespace before <?php and no echo statements in the script, because otherwise the wrong HTTP header will be sent and the browser won't display the image properly. If you have problems, comment out the header() function call and see what is displayed.
+<!DOCTYPE html>
+<html lang="en">
 
-//how to use <img src="pullimage.php?id=1&type=thumbnail" width="175" height="200" />
+<head>
 
-// do some validation here to ensure id is safe
-	$myblobid = $_GET['id'];;
-	$myimgtype = $_GET['type'];
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="st1.css">
+    <link rel="stylesheet" type="text/css" href="lightview.css">
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <style></style>
+
+</head>
+<style type="text/css">
+    #chickenbutt {}
+</style>
+
+<body>
+    <div id="contenedor">
 
 
-	include("connection_database.php");
-	$conn=connect();
-	$query = "SELECT ".$myimgtype." FROM images WHERE photo_id= :MYBLOBID";
-	$stmt = oci_parse ($conn, $query);
-	oci_bind_by_name($stmt, ':MYBLOBID', $myblobid);
-	oci_execute($stmt);
-	$arr = oci_fetch_array($stmt, OCI_ASSOC);
-	$myimgtype = strtoupper($myimgtype);
-	$result = $arr[$myimgtype]->load();
 
-	header("Content-type: image/JPEG");
-	echo $result;
+        <div id="cabecera">
+            <div id="logo">
 
-	oci_close($conn);
+                <h1><a id="top" href="mainpage.html">PHOTOSHARE</a></h1>
+            </div>
+            <div id="nav">
+                <ul>
+                    <li><a href="mainpage.html">HOME</a></li>
+                    <li><a href="profilepage.html">PROFILE</a></li>
+                    <li><a href="search.html">SEARCH</a></li>
+                    <li><a href="new_index.html">LOGOUT</a></li>
+                </ul>
+            </div>
+            <div id="search_form">
+                <form action="search.php" method="get"><input name="s" type="text" size="9" maxlength="30">
+                </form>
+            </div>
+        </div>
+  <script>
+  $(function() {
+    $( "#datepicker" ).datepicker();
+  });
+  </script>
+        <script type="text/javascript">
+            function fivethumb(str) {
+                $("#chickenbutt").html("");
+                var xmlhttp = new XMLHttpRequest();
+                xmlhttp.onreadystatechange = function() {
+                    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                        var txt = xmlhttp.responseText;
+                        $("#chickenbutt").html(txt);
+                    }
+                };
+                xmlhttp.open("GET", "thumb.php?freq=" + str, true);
+                xmlhttp.send();
+            };
+        </script>
 
-?>
+
+        <div id="chickenbutt" class="text-center">
+            <br>
+            <?php
+					$id = $_GET['id'];	
+					include("connection_database.php");
+					$conn=connect();
+					$query = "SELECT * FROM images where photo_id = $id";
+					$stmt = oci_parse ($conn, $query);
+					oci_execute($stmt);
+					$arr = oci_fetch_array($stmt, OCI_ASSOC);
+					echo '<img src="pullimage.php?id='.$id.'&type=photo" />';					
+					//oci_close($conn);
+					function getgrp($sql,$conn) {
+                        $sql = "";
+					    $stid = oci_parse($conn,$sql);
+					    $res = oci_execute($stid);
+					    while (($row = oci_fetch_array($stid, OCI_ASSOC))) {
+
+                            $selected = "selected";
+					       echo '<option value='.$row[''].' '.$selected.'>'.$row[''].'</option>';
+					    }
+					}
+				?>
+        </div>
+        <div id="update">
+            <form action="shitttttt.php">
+				<fieldset class="form-group" >
+                <label for="exampleTextarea">Subject</label>
+                <textarea class="form-control" id="subj" rows="1" 
+                    placeholder='<?php echo $arr["SUBJECT"];?>'></textarea>
+                </fieldset>
+               	<fieldset class="form-group" >
+                <label for="exampleTextarea">Place</label>
+                <textarea class="form-control" id="place" rows="1" 
+                    placeholder='<?php echo $arr["PLACE"];?>'></textarea>
+                </fieldset>
+               	<fieldset class="form-group" >
+                <label for="exampleTextarea">Timing/When</label>
+                <input class="form-control date" id="datepicker" rows="1" 
+                    placeholder='<?php echo $arr["TIMING"];?>'></input>
+                </fieldset>
+
+                <fieldset class="form-group" >
+                <label for="exampleTextarea">Description</label>
+                <textarea class="form-control" id="desc" rows="3" 
+                    placeholder='<?php echo $arr["DESCRIPTION"];?>'></textarea>
+                </fieldset>
+               
+                <div class="">
+                    <label>
+				      Permitted
+				    </label>
+				    <select class="c-select">
+				      <?php getres("",$conn); ?>
+					  <option selected>Open this select menu</option>
+					  <option value="1">One</option>
+					  <option value="2">Two</option>
+					  <option value="3">Three</option>
+					</select>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+
+
+
+        <div id="pie">
+
+
+
+            <div id="pie_l">
+                <ul>
+                    <li><a href="mainpage.html">HOME</a></li>
+                </ul>
+            </div>
+            <div id="pie_r">
+                <a href="#">UP <span class="up">↑</span></a>
+            </div>
+        </div>
+
+
+
+
+    </div>
+
+</body>
+
+</html>

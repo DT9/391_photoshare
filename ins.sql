@@ -104,9 +104,9 @@ CREATE TABLE images (
 );
 CREATE TABLE photo_count (
    photo_id int,
-   photo_count int,
-   photo_place_count int,
-   frequency_description int,
+   count int,
+   place_count int,
+   description int,
    PRIMARY KEY(photo_id),
    FOREIGN KEY(photo_id) REFERENCES images
 );
