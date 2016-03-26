@@ -5,20 +5,42 @@
 <?php
 //GG
 //http://stackoverflow.com/questions/24895170/multiple-image-upload-php-form-with-one-input
-
+     print_r($_REQUEST);
 //http://php.net/manual/en/function.oci-connect.
 include("connection_database.php");
 include("scaleimage.php");
 echo "<center>Hello World!</center><br/>";
 $check = count($_FILES['image']['name']);
     
-     $conn = connect();   
+    echo "<center>Hello World! $check</center><br/>";
+    
+     $conn = connect(); 
+
+$date = $_REQUEST['datepicker'];
+$place = $_REQUEST['keysearch'];
+$tag = $_REQUEST['tag'];
+$tagarr = explode(' ', trim($tag));
+$datearr = explode('/', trim($date));
+$privacy = $_REQUEST['privacy'];
+$comments = $_REQUEST['comments'];
+
+
+echo "The date = $datearr";
+echo "from date = $datearr[1]";
+echo "to date = $datearr[0]";
+echo "Keyword = $datearr[2]";
+echo "comment = $comments";
+
+
+
+
+
+  
 if (!$conn) {
     $e = oci_error();
     trigger_error(htmlentities($e['message'], ENT_QUOTES), E_USER_ERROR);
 }
 
-        
 
 for($i=0; $i<count($_FILES['image']['name']); $i++) {
 	echo "shiiit";
@@ -64,9 +86,9 @@ function saveimage($image, $thumbnail){
     /*
     $stmt = oci_parse($conn, "select * from images");
     oci_execute($stmt);
-    oci_fetch($stmt);*/
+    oci_fetch($stmt);
     $id = 3;
-    
+    */
     
     
     //found is implemented with use of http://php.net/manual/en/function.oci-new-descriptor.php
@@ -97,6 +119,5 @@ function saveimage($image, $thumbnail){
       oci_close($conn);
  }
  
-
 
 ?>
