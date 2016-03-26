@@ -564,26 +564,3 @@ iframe{
     padding: 20px; 
     
 }
-
-/*http://bootsnipp.com/snippets/featured/bootstrap-drag-and-drop-upload*/
-/* layout.css Style */
-.upload-drop-zone {
-  height: 200px;
-  border-width: 2px;
-  margin-bottom: 20px;
-}
-
-/* skin.css Style*/
-.upload-drop-zone {
-  color: #ccc;
-  border-style: dashed;
-  border-color: #ccc;
-  line-height: 200px;
-  text-align: center
-}
-.upload-drop-zone.drop {
-  color: #222;
-  border-color: #222;
-}
-/*http://bootsnipp.com/snippets/featured/bootstrap-drag-and-drop-upload*/
-
