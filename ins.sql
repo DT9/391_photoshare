@@ -102,6 +102,16 @@ CREATE TABLE images (
    FOREIGN KEY(owner_name) REFERENCES users,
    FOREIGN KEY(permitted) REFERENCES groups
 );
+CREATE TABLE photo_count (
+   photo_id int,
+   photo_count int,
+   photo_place_count int,
+   frequency_description int,
+   PRIMARY KEY(photo_id),
+   FOREIGN KEY(photo_id) REFERENCES images
+);
+
+
 INSERT INTO users VALUES ('john', 'john123', TO_DATE('31/1/2011 12:12:12', 'DD/MM/YYYY hh24:mi:ss'));
 INSERT INTO users VALUES ('donald', 'donald123', TO_DATE('2/11/2013 2:19:32', 'DD/MM/YYYY hh24:mi:ss'));
 INSERT INTO users VALUES ('donald2', 'donald123',  TO_DATE('24/12/2013 19:17:2', 'DD/MM/YYYY hh24:mi:ss'));
