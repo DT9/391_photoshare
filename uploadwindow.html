@@ -38,27 +38,27 @@
     
     	
     
-	    <form action="search_page.php">
+          <form action="upload_photos.php" method="post" enctype="multipart/form-data" id="js-upload-form">
             	
-					<p>Date: <input type="text" id="datepicker" placeholder="MM/DD/YYYY"></p>
+					<p>Date: <input type="text" id="datepicker" name="datepicker" placeholder="MM/DD/YYYY"></p>
            
             	<p>
             	Place:<input type ="search" id = "keysearch" name= "keysearch" placeholder="Location"></p>
             	
-            	<p>Tag:<input type="search" id="tag" placeholder="Split tags with spacebar"></p>
+            	<p>Tag:<input type="search" id="tag" name="tag"placeholder="Split tags with spacebar"></p>
             	<p>Privacy:</p>
-            	<form>
+
  						 <input type="radio" name="privacy" value="public" checked> Public<br>
  						 <input type="radio" name="privacy" value="group"> Groups Only<br>
  						 <input type="radio" name="privacy" value="meonly"> Only Me  
-					</form> 
+
             
     			<p>Comments:</p>
-    			<form action="/html/tags/html_form_tag_action.cfm" method="post">
+
 					<div>
 					<textarea name="comments" id="comments" style="font-family:sans-serif;font-size:1.2em;" placeholder="Extra Notes"></textarea>
 					</div>
-				</form>
+
     
     
     
@@ -70,14 +70,14 @@
 
           <!-- Standar Form -->
           <h4>Select files from your computer</h4>
-          <form action="" method="post" enctype="multipart/form-data" id="js-upload-form">
+
             <div class="form-inline">
               <div class="form-group">
                 <input type="file" name="files[]" id="js-upload-files" multiple>
               </div>
               <button type="submit" class="btn btn-sm btn-primary" id="js-upload-submit">Upload files</button>
             </div>
-          </form>
+
 
 
 
