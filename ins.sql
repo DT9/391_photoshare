@@ -129,12 +129,36 @@ INSERT INTO group_lists VALUES (4, 'marilyn', TO_DATE('11/01/2011 12:12:12', 'DD
 INSERT INTO group_lists VALUES (4, 'donald', TO_DATE('12/01/2011 12:12:12', 'DD/MM/YYYY hh24:mi:ss'),'notice me senpai4');
 INSERT INTO group_lists VALUES (5, 'nathaniel', TO_DATE('01/01/2011 12:12:12', 'DD/MM/YYYY hh24:mi:ss'),'notice me senpai5');
 
---MAKE DATA CUBE
+--MAKE DUH DATA CUBE
 create view data_cube as 
-   select owner_name, subject, timing, extract(year from timing) as tYear, extract(month from timing) 
-   as tMonth, trunc(timing, 'w')as tWeek, count(*)  as image_count 
+   select owner_name, subject, extract(year from timing) as tYear, extract(month from timing) 
+   as tMonth, to_number(to_char(timing,'WW')) as tWeek, count(*) as image_count 
    from images 
    group by cube (owner_name, subject, timing, extract(year from timing), 
-      extract(month from timing), trunc(timing, 'w'));
+      extract(month from timing), to_number(to_char(timing,'WW')));
+
+--INDEXES MAN
+create index name_index on images(owner_name) indextype is ctxsys.context;
+create index subject_index on images(subject) indextype is ctxsys.context;
+create index date_index on images(timing);
+create index desc_index on images(description) indextype is ctxsys.context;
+create index place_index on images(place) indextype is ctxsys.context;
+
+--make dem indexes update bro
+define interval = "3"
+set serveroutput on
+declare
+   type array_t is table of varchar2(20);
+   array array_t := array_t('name_index', 'subject_index', 'date_index','desc_index','place_index');
+   job number;   
+begin
+   for i in 1..array.count loop
+      dbms_job.submit(job, 'ctx_ddl.sync_index(''array(i)'');',
+      interval=>'SYSDATE+&interval/1440');
+      commit;
+      dbms_output.put_line('job '||job||' has been submitted.');
+   end loop;
+end;
+
 
 COMMIT;

@@ -51,6 +51,8 @@ echo '<TABLE class="table table-bordered"><TR valign=top align=left>
 	</tr>";
 
 while (($row = oci_fetch_array($stid, OCI_ASSOC))) {
+	print_r($row);
+	print_r("<br>");
 	echo "<TR valign=top align=left>";
 	if (isset($row["OWNER_NAME"])) {
 		echo "<td>".$row["OWNER_NAME"]."</td>";
@@ -79,7 +81,6 @@ while (($row = oci_fetch_array($stid, OCI_ASSOC))) {
 
 	echo "<td>".$row["IMAGE_COUNT"]."</td>";
 	echo "</tr>";
-	
 }
 echo "</TABLE>";
 /*
@@ -128,6 +129,23 @@ where owner_name= " + user
 	echo "</tr>";
 }
 echo "</TABLE>";
+
+Morris.Area({
+                element: 'morris-area-chart',
+                data: [{
+                    period: '2011 W1',
+                    user:4
+                }, {
+                    period: '2010 Q2',
+                    user:9
+                }],
+                xkey: 'period',
+                ykeys: ['user'],
+                labels:['name'],
+                pointSize: 2,
+                hideHover: 'auto',
+                resize: true
+            });
 
 */
 ?> 
