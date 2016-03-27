@@ -44,6 +44,7 @@ include("connection_database.php");
 		 	echo "error";	    
 	    	exit;
 	    }
+	    else{header("location:http://consort.cs.ualberta.ca/~jianle/database_site/391_photoshare/mainpage.html");}
 	    echo "good good";
 	    
 	    
