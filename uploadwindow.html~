@@ -38,25 +38,25 @@
     
     	
     
-          <form action="upload_photos.php" method="post" enctype="multipart/form-data" id="js-upload-form">
+          <form action="upload_photos.php" method="post" enctype="multipart/form-data">
             	
-					<p>Date: <input type="text" id="datepicker" "datepicker" placeholder="MM/DD/YYYY"></p>
+					<p>Date: <input type="text" id="datepicker" name="datepicker" placeholder="MM/DD/YYYY"></p>
            
             	<p>
-            	Place:<input type ="search" id = "keysearch"  "keysearch" placeholder="Location"></p>
+            	Place:<input type ="search" id = "keysearch" name= "keysearch" placeholder="Location"></p>
             	
-            	<p>Tag:<input type="search" id="tag" "tag"placeholder="Split tags with spacebar"></p>
+            	<p>Tag:<input type="search" id="tag" name="tag"placeholder="Split tags with spacebar"></p>
             	<p>Privacy:</p>
 
- 						 <input type="radio" "privacy" value="public" checked> Public<br>
- 						 <input type="radio" "privacy" value="group"> Groups Only<br>
- 						 <input type="radio" "privacy" value="meonly"> Only Me  
+ 						 <input type="radio" name="privacy" value="public" checked> Public<br>
+ 						 <input type="radio" name="privacy" value="group"> Groups Only<br>
+ 						 <input type="radio" name="privacy" value="meonly"> Only Me  
 
             
     			<p>Comments:</p>
 
 					<div>
-					<textarea "comments" id="comments" style="font-family:sans-serif;font-size:1.2em;" placeholder="Extra Notes"></textarea>
+					<textarea name="comments" id="comments" style="font-family:sans-serif;font-size:1.2em;" placeholder="Extra Notes"></textarea>
 					</div>
 
     
@@ -73,9 +73,9 @@
 
             <div class="form-inline">
               <div class="form-group">
-                <input type="file" "files[]" id="js-upload-files" multiple>
+                <input type="file" name="image" id="image" multiple="multiple"/>
               </div>
-              <button type="submit" class="btn btn-sm btn-primary" id="js-upload-submit">Upload files</button>
+              <button type="submit" class="btn btn-sm btn-primary" id="js-upload-submit"/> Upload files</button>
             </div>
 
 
