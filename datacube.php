@@ -14,12 +14,18 @@ if ($user == "All") {
 elseif ($user == "None"){
 	$user = "is not null";
 }
+else {
+	$user = " = ".$user." ";
+}
 //Subject
 if ($subj == "All") {
 	$subj = "is null";
 }
 elseif ($subj == "None"){
 	$subj = "is not null";
+}
+else {
+	$subj = " = ".$subj." ";
 }
 //Date
 if ($date == "Year") {
@@ -36,7 +42,7 @@ else {
 }
 
 $stp = "SELECT distinct owner_name,subject,tYear,tMonth,tWeek,image_count
-		FROM data_cube 
+		FROM data_cube
 		where owner_name ".$user.
 		" and subject ".$subj.
 		" and ".$date;
@@ -79,7 +85,7 @@ while (($row = oci_fetch_array($stid, OCI_ASSOC))) {
 
 	echo "<td>".$row["IMAGE_COUNT"]."</td>";
 	echo "</tr>";
-	
+
 }
 echo "</TABLE>";
 /*
@@ -130,4 +136,4 @@ where owner_name= " + user
 echo "</TABLE>";
 
 */
-?> 
+?>
