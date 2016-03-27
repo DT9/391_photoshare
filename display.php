@@ -72,16 +72,16 @@
 					$arr = oci_fetch_array($stmt, OCI_ASSOC);
 					echo '<img src="pullimage.php?id='.$id.'&type=photo" />';					
 					//oci_close($conn);
-					function getgrp($sql,$conn) {
-                        $sql = "";
-					    $stid = oci_parse($conn,$sql);
-					    $res = oci_execute($stid);
-					    while (($row = oci_fetch_array($stid, OCI_ASSOC))) {
-
-                            $selected = "selected";
-					       echo '<option value='.$row[''].' '.$selected.'>'.$row[''].'</option>';
-					    }
-					}
+                    $sql = "select * from group_lists g,images i,groups s where i.photo_id = ".$id." and g.friend_id = i.owner_name and s.group_id = g.group_id and g.group_id != 1 and g.group_id != 2";
+                    $fin  = "";
+				    $stid = oci_parse($conn,$sql);
+				    $res = oci_execute($stid);
+				    while (($row = oci_fetch_array($stid, OCI_ASSOC))) {
+                        $selected = "";
+                        if ($arr[$id] == $res['GROUP_ID']) {$selected = "selected";}
+				        $fin.='<option value="'.$row['GROUP_ID'].'" '.$selected.'>'.$row['GROUP_NAME'].'</option>';
+				    }
+					
 				?>
         </div>
         <div id="update">
@@ -113,11 +113,9 @@
 				      Permitted
 				    </label>
 				    <select class="c-select">
-				      <?php getres("",$conn); ?>
-					  <option selected>Open this select menu</option>
-					  <option value="1">One</option>
-					  <option value="2">Two</option>
-					  <option value="3">Three</option>
+                        <option value="1">Public</option>
+                        <option value="2">Private</option>
+				        <?php echo $fin; ?>
 					</select>
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
