@@ -23,7 +23,7 @@ include("connection_database.php");
  	///////////////////////////////////////////////////////////////////////////////////
  	//checking if username and password in system 
  		 $sql='select count(*) from Users where user_name=\''.$user.'\' and password=\''.$pswd.'\'';
- 		 $sql='select count(*) from Users where user_name=\''.$user.'\'';
+ 		 //$sql='select count(*) from Users where user_name=\''.$user.'\'';
  		          
 	    echo $sql;
 	    //Prepare sql using conn and returns the statement identifier
@@ -38,7 +38,7 @@ include("connection_database.php");
 	    oci_free_statement($stid);
 	    oci_close($conn);
 	    echo "r is $r";
-      /*
+      
 	    $result=FALSE;
 	    if ($r=='0'){ $result=TRUE;}
 	    echo $result;
@@ -47,7 +47,7 @@ include("connection_database.php");
 		 	echo "error";	    
 	    	exit;
 	    }
-	    */
+	    
 	    echo "good good";
 	    
 	    

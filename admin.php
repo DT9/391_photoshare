@@ -320,7 +320,7 @@ function getres($sql,$conn) {
                                             <select id="user" class="form-control">
                                                 <option>All</option>
                                                 <option>None</option>
-
+                                                <?php getres("select user_name from user",$conn); ?>
                                             </select>
                                         </div>
                                     <div class="form-group col-lg-4">
@@ -328,7 +328,7 @@ function getres($sql,$conn) {
                                             <select id="subj" class="form-control">
                                                 <option>All</option>
                                                 <option>None</option>
-
+                                                <?php getres("select distinct subject from images",$conn); ?>
                                             </select>
                                         </div>
                                     <div class="form-group col-lg-4">
@@ -516,7 +516,7 @@ function ajaxgraph(str) {
     xmlhttp.onreadystatechange = function() {
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
             var txt = xmlhttp.responseText;
-            
+
             $("#morris-area-chart").html(txt);
 
 
