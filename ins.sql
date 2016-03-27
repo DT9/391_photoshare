@@ -103,10 +103,17 @@ CREATE TABLE images (
    FOREIGN KEY(permitted) REFERENCES groups
 );
 CREATE TABLE photo_count (
+<<<<<<< HEAD
    photo_id varchar(50),
    photo_count int,
    photo_place_count int,
    frequency_description int,
+=======
+   photo_id int,
+   count int,
+   place_count int,
+   description int,
+>>>>>>> c8d4c781d4eafc36826e90476039ea588f5eb842
    PRIMARY KEY(photo_id),
    FOREIGN KEY(photo_id) REFERENCES images
 );
