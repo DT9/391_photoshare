@@ -40,8 +40,6 @@ BEGIN
 END;
 /
 
-drop sequence test_seq;
-drop sequence pic_id_sequences;
 --Create sequences for auto-incr ids
 create sequence test_seq start with 1 increment by 1 nomaxvalue;
 create sequence picsbro start with 4 increment by 1 nomaxvalue;
@@ -106,7 +104,6 @@ CREATE TABLE photo_count (
    photo_count int,
    photo_place_count int,
    frequency_description int,
-   photo_id int,
    count int,
    place_count int,
    description int,
