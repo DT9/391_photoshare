@@ -107,10 +107,6 @@ CREATE TABLE photo_count (
    photo_count int,
    photo_place_count int,
    frequency_description int,
-   photo_id int,
-   count int,
-   place_count int,
-   description int,
    PRIMARY KEY(photo_id),
    FOREIGN KEY(photo_id) REFERENCES images
 );
@@ -138,7 +134,6 @@ INSERT INTO groups VALUES (7, 'marilyn', 'marilyn', TO_DATE('12/5/2013 20:12:51'
 INSERT INTO groups VALUES (8, 'nathaniel', 'nathaniel', TO_DATE('31/1/2015 13:11:32', 'DD/MM/YYYY hh24:mi:ss'));
 
 INSERT INTO group_lists VALUES (1, 'john', TO_DATE('30/01/2011 12:12:12', 'DD/MM/YYYY hh24:mi:ss'),'notice me senpai1');
-INSERT INTO group_lists VALUES (3, 'john', TO_DATE('30/01/2011 12:12:12', 'DD/MM/YYYY hh24:mi:ss'),'notice me senpai1');
 INSERT INTO group_lists VALUES (2, 'donald2', TO_DATE('21/01/2011 12:12:12', 'DD/MM/YYYY hh24:mi:ss'),'notice me senpai2');
 INSERT INTO group_lists VALUES (4, 'marilyn', TO_DATE('11/01/2011 12:12:12', 'DD/MM/YYYY hh24:mi:ss'),'notice me senpai3');
 INSERT INTO group_lists VALUES (4, 'donald', TO_DATE('12/01/2011 12:12:12', 'DD/MM/YYYY hh24:mi:ss'),'notice me senpai4');

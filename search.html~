@@ -11,7 +11,7 @@
     $( "#from" ).datepicker({
       defaultDate: "+1w",
       changeMonth: true,
-      numberOfMonths: 3,
+      numberOfMonths: 1,
       onClose: function( selectedDate ) {
         $( "#to" ).datepicker( "option", "minDate", selectedDate );
       }
@@ -19,7 +19,7 @@
     $( "#to" ).datepicker({
       defaultDate: "+1w",
       changeMonth: true,
-      numberOfMonths: 3,
+      numberOfMonths: 1,
       onClose: function( selectedDate ) {
         $( "#from" ).datepicker( "option", "maxDate", selectedDate );
       }
@@ -41,7 +41,7 @@
             <div id="cabecera">
                 <div id="logo">
                     
-                    <h1><a id="top" href="testing2.html">PHOTOSHARE</a></h1>
+                    <h1><a id="top" href="mainpage.html">PHOTOSHARE</a></h1>
                 </div>
                 <div id="nav">
                     <ul>
