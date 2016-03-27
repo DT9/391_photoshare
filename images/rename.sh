@@ -1,5 +1,5 @@
 a=1
-for i in *; do
+for i in $(ls -S); do
   new=$(printf "%d.jpg" "$a") #04 pad to length of 4
   mv -- "$i" "$new"
   let a=a+1
