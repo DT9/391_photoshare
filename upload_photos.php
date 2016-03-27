@@ -16,14 +16,15 @@ $check = $_FILES['image']['name'][2];
     
 $conn = connect(); 
 
-$date = $_REQUEST['datepicker'];
-$place = $_REQUEST['keysearch'];
-$tag = $_REQUEST['tag'];
-$tagarr = explode(' ', trim($tag));
-$datearr = explode('/', trim($date));
-$privacy = $_REQUEST['privacy'];
-$comments = $_REQUEST['comments'];
 
+    
+   $date = $_POST['datepicker'];
+	$place = $_POST['keysearch'];
+	$tag = $_POST['tag'];
+	$tagarr = explode(' ', trim($tag));
+	$datearr = explode('/', trim($date));
+	$privacy = $_POST['privacy'];
+	$comments = $_POST['comments'];
 
 
 echo "The date = $date";
@@ -80,52 +81,89 @@ for($i=0; $i<count($_FILES['image']['name']); $i++) {
             $image= addslashes($_FILES['image']['tmp_name'][$i]);
             $image= file_get_contents($image);
             $image= base64_encode($image);
-            $thumbnail = scaleImageFileToBlob($_FILES['image']['tmp_name'][$i]);
+            
+				            
+            
+            $thumbnail = scaleImageFileToBlob($_FILES['image']['tmp_name'][$i]);            
+            
             $thumbnail = base64_encode($thumbnail);
-            saveimage($image, $thumbnail,$conn);
-        }
-    }
-}
-        
-    
-function saveimage($image, $thumbnail,$conn){
-	echo"shiiiiiiiit";
+       
+       
+       echo"shiiiiiiiit";
+	echo"-------------here------------";    	
+		
     /*
     $stmt = oci_parse($conn, "select * from images");
     oci_execute($stmt);
     oci_fetch($stmt);
     $id = 3;
     */
-    
+
     
     //found is implemented with use of http://php.net/manual/en/function.oci-new-descriptor.php
     $lob   = oci_new_descriptor($conn, OCI_D_LOB);
     $lobimage  = oci_new_descriptor($conn, OCI_D_LOB);
+
     //used to save blob
     $uniqueid = uniqid();
+
+    $stmt = oci_parse($conn, 'insert into images (photo_id,subject,place,timing,description,thumbnail,photo) values 
+    (:php_id, :tags, :location, TO_DATE( :time, \'mm/dd/yyyy\'), :notes, EMPTY_BLOB(), EMPTY_BLOB()) returning thumbnail, photo into :thumbnail, :photo');
     
-    $stmt = oci_parse($conn, "insert into images (photo_id,subject,place,timing,description,thumbnail,photo) values 
-    ('".$uniqueid."','".$tag."','".$place."', TO_DATE('".$date."','mm/dd/yyyy'),'".$comments."',EMPTY_BLOB(), EMPTY_BLOB()) returning thumbnail, photo into :thumbnail, :photo");
+      oci_bind_by_name($stmt, ':php_id', $uniqueid);
+      oci_bind_by_name($stmt, ':tags', $tag);
+      oci_bind_by_name($stmt, ':location', $place);
+      oci_bind_by_name($stmt, ':time', $date);
+      oci_bind_by_name($stmt, ':notes', $comments);
       
       oci_bind_by_name($stmt, ':thumbnail', $lob, -1,  OCI_B_BLOB);
       oci_bind_by_name($stmt, ':photo', $lobimage, -1,  OCI_B_BLOB);
+      
+      
+// http://www.php-tutorials.com/oracle-blob-insert-php-bind-variables/
+      
+      if(!oci_execute($stmt, OCI_DEFAULT)) {
+  			$e = error_get_last();
+  			$f = oci_error();
+  			echo "Message: ".$e['message']."\n";
+  			echo "File: ".$e['file']."\n";
+ 			echo "Line: ".$e['line']."\n";
+ 			echo "Oracle Message: ".$f['message'];
+  // exit if you consider this fatal
+  			echo "<table align='center'> <tr><td>Couldn't upload image. </td></tr> <tr><td>Please check you have correct sensor id.</td></tr> </table><br/>";
+		} else {
+ 
+  // save the blob data
+		  $lob->save($thumbnail);
+  		$lobimage->save($image);
+  // commit the query
+  		oci_commit($conn);
+  // free up the blob descriptors
+  $lob->free();
+  $lobimage->free();
+  echo "<center>Image successfully uploaded!</center><br/>";
+}
+
+
+	/*
       @oci_execute($stmt, OCI_NO_AUTO_COMMIT);
-      echo "<center>added to database!</center><br/>";
-		oci_commit($conn);
+      echo "<center>Shiiiiiiiit!</center><br/>";
 		
-		/*
+		
       if ( @$lob->save($thumbnail) && @$lobimage->save($image)){
           oci_commit($conn);
           echo "<center>Image successfully uploaded!</center><br/>";
       }else{
           echo "<table align='center'> <tr><td>Couldn't upload image. </td></tr> <tr><td>Please check you have correct sensor id.</td></tr> </table><br/>";
       }
-      */
       //continue 
-      
+      */
     
-      $lob->free();
       oci_free_statement($stmt);
+    }
+}
+        
+	
  }
  
       
