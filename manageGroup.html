@@ -80,20 +80,16 @@
                 <form action="group_user_delete.php" method="post" enctype="multipart/form-data">
                     <div class="text-center">
                                             <label>Groups</label>
+                                            <input name="group" multiple="" class="form-control"></input>Group List
                                             <select id="user" class="form-control">
-                                                <?php
-                                                    getres("select group_name from groups",$conn);
-                                                ?>
                                             </select>
                                             <div>
                                             <label>Users</label>
-                                            <select id="noob" multiple="" class="form-control">
-                                                <?php
-                                                    getres("select user_name from users",$conn);
-                                                ?>
-                                            </select>
+                                            <input id="noob" name="user" multiple="" class="form-control"></input>
+                                            User List
+                                            <select id="noob" multiple="" class="form-control"></select>
                                             <div>
-                        <br><input type="submit" value="Update group!" id="selectedButton" color="black"/>
+                        <br><input type="submit" value="Delete User" id="selectedButton" color="black"/>
                     </div>
                 </form>
             </div>
@@ -116,11 +112,7 @@
                 <form action="deletegroup.php" method="post" enctype="multipart/form-data">
                     <div class="text-center">
                                             <label>Groups</label>
-                                            <select id="user" class="form-control">
-                                                <?php
-                                                    getres("select group_name from groups",$conn);
-                                                ?>
-                                            </select>
+                                            <input name="group" multiple="" class="form-control"></input>
                                 <br><input type="submit" value="Delete group!" id="selectedButton" color="black"/>
                     </div>
                 </form>

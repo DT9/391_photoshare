@@ -81,23 +81,11 @@ for($i=0; $i<count($_FILES['image']['name']); $i++) {
           list($width, $height) = getimagesize($tmp_name);
             $image= addslashes($_FILES['image']['tmp_name'][$i]);
             $image= file_get_contents($image);
-<<<<<<< HEAD
-=======
             //$image= base64_encode($image);
-<<<<<<< HEAD
->>>>>>> ba6fad8c6b13123d5b625ddd82f85a9dbba804f1
-            
-				            
-            
-=======
 
->>>>>>> 0f4aa06b9bc194e8d4e6f2f4fb5b08105d6a04e1
             $thumbnail = scaleImageFileToBlob($_FILES['image']['tmp_name'][$i]);            
             
-<<<<<<< HEAD
-=======
             //$thumbnail = base64_encode($thumbnail);
->>>>>>> ba6fad8c6b13123d5b625ddd82f85a9dbba804f1
        
        
        echo"shiiiiiiiit";

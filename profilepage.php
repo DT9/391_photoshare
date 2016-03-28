@@ -64,13 +64,10 @@ session_start();
 			
             
             
-<<<<<<< HEAD
             
               <div id="cuerpo">
-=======
                 <div id="cuerpo">
                 <input class="text-input" id="user" type="text" value="<?php echo $_SESSION['user-name'];?>"/>
->>>>>>> 0f4aa06b9bc194e8d4e6f2f4fb5b08105d6a04e1
                     <div id="up_izq"><h3>GALLERY</h3></div>
                     
                     
