@@ -4,13 +4,13 @@ include("connection_database.php");
 <html>
     <body>
        <?php
-        
+        session_start();
         if (isset ($_POST['validate'])){
             //get the input
             $user=$_POST['username'];
             $pswd=$_POST['password'];
             //if($ccid==''||$name==''){echo 'error';}
-			
+		 $_SESSION['user-name']=$user;
 	    ini_set('display_errors', 1);
 	    error_reporting(E_ALL);
 	    
@@ -41,10 +41,12 @@ include("connection_database.php");
 	    echo $result;
 	    if ($result){
 	    	header("location:http://consort.cs.ualberta.ca/~jianle/database_site/391_photoshare/new_index.html");
-		 	echo "error";	    
+		 	//echo "error";	    
 	    	exit;
 	    }
-	    else{header("location:http://consort.cs.ualberta.ca/~jianle/database_site/391_photoshare/mainpage.html");}
+	    else{
+		 //$_SESSION['user-name']="$user";	    
+	    header("location:http://consort.cs.ualberta.ca/~jianle/database_site/391_photoshare/mainpage.html");}
 	    echo "good good";
 	    
 	    

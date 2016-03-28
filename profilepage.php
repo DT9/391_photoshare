@@ -1,4 +1,14 @@
-<!DOCTYPE html>
+<!--<!DOCTYPE html>-->
+
+<?php
+include("connection_database.php");
+session_start();
+	//connect();
+	//echo "<h1>hello</h1>";
+	$user=$_SESSION['user-name'];
+	echo "hello $user";
+?>
+
 <html lang="en">
     <head>
 
@@ -10,6 +20,7 @@
     </head>
     
     <body>
+
         <div id="contenedor">
             
             
@@ -34,6 +45,7 @@
             
             
                 <div id="cuerpo">
+                <input class="text-input" type="text" value="<?php echo $_SESSION['user-name'];?>"/>
                     <div id="up_izq"><h3>GALLERY</h3></div>
                     
                     

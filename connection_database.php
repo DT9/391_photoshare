@@ -1,7 +1,7 @@
 <?php
 function connect(){
 
-	$conn = oci_connect('chengyao', 'chengyao00308900');
+	$conn = oci_connect('jianle', 'drag0ngamer');
 
 	if (!$conn) {
 		$e = oci_error();

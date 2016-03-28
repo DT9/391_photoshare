@@ -1,8 +1,14 @@
 <!--<!DOCTYPE html>-->
+
 <?php
-	session_start();
-	echo <h1>"hey b"</h1>;
+include("connection_database.php");
+session_start();
+	//connect();
+	//echo "<h1>hello</h1>";
+	$user=$_SESSION['user-name'];
+	echo "hello $user";
 ?>
+
 <html lang="en">
     <head>
 
