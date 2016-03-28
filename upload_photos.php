@@ -76,14 +76,13 @@ for($i=0; $i<count($_FILES['image']['name']); $i++) {
         if(getimagesize($_FILES['image']['tmp_name'][$i]) == FALSE){
             echo "Please select an image.";
         }
-        else{
-        		echo "<center>I'm Here!</center><br/>";
+        else{            
+          $tmp_name = $_FILES['image']['tmp_name'][$i];
+          list($width, $height) = getimagesize($tmp_name);
             $image= addslashes($_FILES['image']['tmp_name'][$i]);
             $image= file_get_contents($image);
             //$image= base64_encode($image);
-            
-				            
-            
+
             $thumbnail = scaleImageFileToBlob($_FILES['image']['tmp_name'][$i]);            
             
             //$thumbnail = base64_encode($thumbnail);

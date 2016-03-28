@@ -27,6 +27,7 @@
                     <li><a href="mainpage.html">HOME</a></li>
                     <li><a href="profilepage.php">PROFILE</a></li>
                     <li><a href="search.html">SEARCH</a></li>
+                    <li><a href="documentation/documentation_sample.html">HELP</a></li>
                     <li><a href="new_index.html">LOGOUT</a></li>
                 </ul>
             </div>
@@ -58,7 +59,7 @@
                         $("#chickenbutt").html(txt);
                     }
                 };
-                xmlhttp.open("GET", "thumb.php?freq="+str, true);
+                xmlhttp.open("GET", "thumb.php"+location.search, true);
                 xmlhttp.send();
             };
             fivethumb(0);

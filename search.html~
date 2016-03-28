@@ -46,13 +46,8 @@
                 <div id="nav">
                     <ul>
                         <li><a href="mainpage.html">HOME</a></li>
-<<<<<<< HEAD
                         <li><a href="profilepage.html">PROFILE</a></li>
                         <li><a href="search.html">GROUPS</a></li>
-=======
-                        <li><a href="profilepage.php">PROFILE</a></li>
-                        <li><a href="search.html">SEARCH</a></li>
->>>>>>> 0f4aa06b9bc194e8d4e6f2f4fb5b08105d6a04e1
                         <li><a href="new_index.html">LOGOUT</a></li>
                     </ul>
                 </div>
@@ -74,7 +69,7 @@
                  <ul>
                      <li><a href="javascript:void(0);"
                          NAME="My Window Name"  title=" My title here "
-                         onClick=window.open("manageGroup.html","Ratting","width=550,height=700,0,status=0,scrollbars=1");>--Manage Groups--</a></li>
+                         onClick=window.open("manageGroup.html","Ratting","width=550,height=700,0,status=0,scrollbars=1");>--Manage groups--</a></li>
                           
                  </ul>
             </div>                
