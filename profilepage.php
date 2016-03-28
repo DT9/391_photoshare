@@ -1,4 +1,14 @@
-<!DOCTYPE html>
+<!--<!DOCTYPE html>-->
+
+<?php
+include("connection_database.php");
+session_start();
+	//connect();
+	//echo "<h1>hello</h1>";
+	$user=$_SESSION['user-name'];
+	echo "hello $user";
+?>
+
 <html lang="en">
     <head>
 
@@ -10,6 +20,7 @@
     </head>
     
     <body>
+
         <div id="contenedor">
             
             
@@ -32,8 +43,28 @@
                 </div>           
                 </div>
             
+
+
+					 <form action="search_page.php">
+            	Search Gallery:
+            	<p>
+            	<label for="from">From</label>
+					<input type="text" id="from" name="from">
+					<label for="to">to</label>
+					<input type="text" id="to" name="to">
+					</p>
+            	
+
+            	<p>
+            	Enter Key Word:<input type ="search" id = "keysearch" name= "keysearch">
+            	<input type="submit"></p>
+            	
+           		 </form>
+			
             
-                <div id="cuerpo">
+            
+            
+              <div id="cuerpo">
                     <div id="up_izq"><h3>GALLERY</h3></div>
                     
                     
@@ -47,7 +78,8 @@
                     </div>
                     
                     <div id="up_der"><form id="gform" action="/search.html/" method="get" name="jumpto"><select name="c" onchange="javascript: submit();"><option value="0">Frequent</option><option value="1">Most Recent</option><option value="2">Oldest</option></select></form></div>
-                </div>
+                </div>           
+      
                 
 
 

@@ -14,13 +14,13 @@ include("connection_database.php");
             $address=$_POST['address'];
             $email=$_POST['email'];
             $phone=$_POST['phonenumber'];
-            /*
+            
             //if not all parts are filled, unsuccessful 
 				if ($user==''or $pswd=='' or $fn=='' or $ln=='' or $address=='' or $email=='' or $phone==''){
 				header("location:http://consort.cs.ualberta.ca/~jianle/database_site/391_photoshare/signup.html");	    
 	    		exit;				
 				}
-				*/
+				
 	    ini_set('display_errors', 1);
 	    error_reporting(E_ALL);
 	    
@@ -32,24 +32,24 @@ include("connection_database.php");
 	    }
  	///////////////////////////////////////////////////////////////////////////////////
  	//checking if username and password in system 
- 		 $sql='select count(*) from Users where user_name=\''.$user.'\' or password=\''.$pswd.'\'';
- 		 $sql.='insert into Users (user_name, password) values (\''.$user.'\',\''.$pswd.'\')';
- 		 $sql.='insert into persons (user_name, first_name, last_name, address, email, phone) values (\''.$user.'\',\''.$pswd.'\',\''.$fn.'\',\''.$ln.'\',\''.$address.'\',\''.$email.'\',\''.$phone.'\')';
- 		 $sql.='insert into persons (user_name, first_name, last_name, address, email, phone) values (\''.$user.'\',\''.$pswd.'\',\''.$fn.'\',\''.$ln.'\',\''.$address.'\',\''.$email.'\',\''.$phone.'\')';
- 		 $sql.='insert into persons (user_name, first_name, last_name, address, email, phone) values (\''.$user.'\',\''.$pswd.'\',\''.$fn.'\',\''.$ln.'\',\''.$address.'\',\''.$email.'\',\''.$phone.'\')';
-	    echo $sql;
-	    //Prepare sql using conn and returns the statement identifier
-	    $stid = oci_parse($conn, $sql);
+ 		 $sql1='select count(*) from Users where user_name=\''.$user.'\' or password=\''.$pswd.'\'';
+ 		 
+ 		 
+	    echo $sql1;
+	    //Prepare sql using conn and returns the statement identifier
+	    $stid = oci_parse($conn, $sql1);
 	    
-	    //Execute a statement returned from oci_parse()
+	    //Execute a statement returned from oci_parse()
 	    $res=oci_execute($stid);
-	    //$r='1';
+	    $r='1';
 	    while ($row=oci_fetch_array($stid,OCI_BOTH)){$r= $row[0];}
 	    //$row=oci_fetch_array($stid,OCI_BOTH)
 	    echo $r;
 	    oci_free_statement($stid);
 	    oci_close($conn);
-       /*
+	    
+	    echo "first part good";
+       // if username or password already exist in the database, error 
 	    $result=FALSE;
 	    if ($r!='0'){ $result=TRUE;}
 	    echo $result;
@@ -58,25 +58,42 @@ include("connection_database.php");
 		 	echo "error";	    
 	    	exit;
 	    }
-	    */
+	    //insert into database 
+	    else{
+	    $sql2='insert into Users (user_name, password, date_registered) values (\''.$user.'\',\''.$pswd.'\',SYSDATE)';
+ 		 $sql3='insert into persons (user_name, first_name, last_name, address, email, phone) values (\''.$user.'\',\''.$fn.'\',\''.$ln.'\',\''.$address.'\',\''.$email.'\',\''.$phone.'\')';
+ 		 echo $sql2;
+	    $conn=connect();
+	    execute_queries($conn, $sql2);
+	    $conn=connect();
+	    execute_queries($conn, $sql3);
+	    
+	    }
+	    //oci_close($conn);
+	    
 	    echo "good good";
 	    
 	    
-	    
-	    //if error, retrieve the error using the oci_error() function & output an error message
-/*
-	    if (!$res) {
-		$err = oci_error($stid); 
-		echo htmlentities($err['message']);
-	    }
-	    else{
-		echo 'Row inserted';
-	    }
-*/ 
-	    // Free the statement identifier when closing the connection
-
-
 	}
+	
+function execute_queries($conn, $sql)	{
+		 
+		 $stid = oci_parse($conn, $sql);
+		 echo "the conn is $conn ";
+	    echo "inserting $sql \n";
+	    //Execute a statement returned from oci_parse()
+	    $res=oci_execute($stid);
+	    if (!$res) {
+		 $err = oci_error($stid); 
+		 echo htmlentities($err['message']);
+		 
+	    }
+	    oci_free_statement($stid);
+	    oci_close($conn);
+
+}
+	
+	
 	?>
 
 

@@ -1,43 +1,27 @@
-
-
-
-
 <?php
 //GG
 //http://stackoverflow.com/questions/24895170/multiple-image-upload-php-form-with-one-input
-     print_r($_FILES);
+
 //http://php.net/manual/en/function.oci-connect.
 include("connection_database.php");
-include("scaleimage.php");
 echo "<center>Hello World!</center><br/>";
-$check = $_FILES['image']['name'][2];
     
-    echo "<center>Hello World! $check</center><br/>";
-    
-$conn = connect(); 
+//$conn = connect(); 
 
 
     
-   $date = $_POST['datepicker'];
-	$place = $_POST['keysearch'];
-	$tag = $_POST['tag'];
-	$tagarr = explode(' ', trim($tag));
-	$datearr = explode('/', trim($date));
-	$privacy = $_POST['privacy'];
-	$comments = $_POST['comments'];
+   $groupid = rand();
+	$groupname=$_POST['groupname'];  
+	 
 
 
-echo "The date = $date";
-echo "from date = $datearr[1]";
-echo "to date = $datearr[0]";
-echo "Keyword = $datearr[2]";
-echo "comment = $comments";
-echo "privacy = $privacy";
-echo " connectuion is = $conn jhvkzjkvhjkzvhjkxh    00-------";
+echo "The group id is = $groupid";
+echo "from date = $groupname";
 
 
+?>
 
-
+/*
   
 if (!$conn) {
     $e = oci_error();
@@ -98,6 +82,17 @@ for($i=0; $i<count($_FILES['image']['name']); $i++) {
        echo"shiiiiiiiit";
 	echo"-------------here------------";    	
 		
+
+
+*/
+
+
+
+
+
+
+
+
     /*
     $stmt = oci_parse($conn, "select * from images");
     oci_execute($stmt);
@@ -105,6 +100,10 @@ for($i=0; $i<count($_FILES['image']['name']); $i++) {
     $id = 3;
     */
 
+    
+/*    
+    
+    
     
     //found is implemented with use of http://php.net/manual/en/function.oci-new-descriptor.php
     $lob   = oci_new_descriptor($conn, OCI_D_LOB);
@@ -151,28 +150,6 @@ for($i=0; $i<count($_FILES['image']['name']); $i++) {
 }
 
 
-	/*
-      @oci_execute($stmt, OCI_NO_AUTO_COMMIT);
-      echo "<center>Shiiiiiiiit!</center><br/>";
-		
-		
-      if ( @$lob->save($thumbnail) && @$lobimage->save($image)){
-          oci_commit($conn);
-          echo "<center>Image successfully uploaded!</center><br/>";
-      }else{
-          echo "<table align='center'> <tr><td>Couldn't upload image. </td></tr> <tr><td>Please check you have correct sensor id.</td></tr> </table><br/>";
-      }
-      //continue 
-      */
-    
-      oci_free_statement($stmt);
-    }
-}
-        
-	
- }
- 
-      
-      oci_close($conn);
-      echo '<center><form method="post" action ="uploadwindow.html"><input type="submit" name="submit" value="continue" /> </form></center>';
-?>
+
+
+*/
