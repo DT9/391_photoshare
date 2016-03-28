@@ -29,7 +29,7 @@
             <div id="nav">
                 <ul>
                     <li><a href="mainpage.html">HOME</a></li>
-                    <li><a href="profilepage.html">PROFILE</a></li>
+                    <li><a href="profilepage.php">PROFILE</a></li>
                     <li><a href="search.html">SEARCH</a></li>
                     <li><a href="new_index.html">LOGOUT</a></li>
                 </ul>

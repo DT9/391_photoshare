@@ -6,14 +6,15 @@ session_start();
 	//connect();
 	//echo "<h1>hello</h1>";
 	$user=$_SESSION['user-name'];
-	echo "hello $user";
+
 ?>
 
 <html lang="en">
     <head>
 
             <link rel="stylesheet" type="text/css" href="st1.css">    <link rel="stylesheet" type="text/css" href="lightview.css">
-                    
+                        <script src="https://code.jquery.com/jquery-2.2.2.min.js"></script>
+
                     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
                 <style></style>
                         
@@ -33,7 +34,7 @@ session_start();
                 <div id="nav">
                     <ul>
                         <li><a href="mainpage.html">HOME</a></li>
-                        <li><a href="profilepage.html">PROFILE</a></li>
+                        <li><a href="profilepage.php">PROFILE</a></li>
                         <li><a href="search.html">SEARCH</a></li>
                         <li><a href="new_index.html">LOGOUT</a></li>
                     </ul>
@@ -63,8 +64,13 @@ session_start();
 			
             
             
+<<<<<<< HEAD
             
               <div id="cuerpo">
+=======
+                <div id="cuerpo">
+                <input class="text-input" id="user" type="text" value="<?php echo $_SESSION['user-name'];?>"/>
+>>>>>>> 0f4aa06b9bc194e8d4e6f2f4fb5b08105d6a04e1
                     <div id="up_izq"><h3>GALLERY</h3></div>
                     
                     
@@ -84,17 +90,27 @@ session_start();
 
 
 
+        <div id="chickenbutt">
 
-                <div>
-                    <img src="getImage.php?id=1" width="175" height="200" />
-                </div>
-                
-             
-             
-             
-                
-                
-                
+        </div>            
+          <script type="text/javascript">
+            function fivethumb(str) {
+                $("#chickenbutt").html("");
+                var xmlhttp = new XMLHttpRequest();
+                xmlhttp.onreadystatechange = function() {
+                    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                        var txt = xmlhttp.responseText;
+                        $("#chickenbutt").html(txt);
+                    }
+                };
+                var user = $("#user").val();
+                var thumb = "thumb.php"+location.search;
+                xmlhttp.open("GET", thumb, true);
+                xmlhttp.send();
+            };
+            fivethumb(0);
+            //popularity of an image is specified by the number of distinct users that have ever viewed the image
+        </script>  
                 
                 <div id="pie">
                     
