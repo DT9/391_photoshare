@@ -1,9 +1,17 @@
 
 <<<<<<< HEAD
+SQL*Loader: Release 12.1.0.2.0 - Production on Sun Mar 27 16:54:32 2016
+=======
+<<<<<<< HEAD
+SQL*Loader: Release 12.1.0.2.0 - Production on Sun Mar 27 16:44:09 2016
+=======
+<<<<<<< HEAD
 SQL*Loader: Release 12.1.0.2.0 - Production on Sat Mar 26 13:13:51 2016
 =======
 SQL*Loader: Release 12.1.0.2.0 - Production on Sat Mar 26 18:30:50 2016
 >>>>>>> f4a2ec0d04f6dc941133048f7459a583301f1be1
+>>>>>>> 48a2eb2b1d27b7b13316f8f5745abdcb2bf4fb2e
+>>>>>>> f575553eb5dd9947d8eec26ac4cf6d3d6fec97a7
 
 Copyright (c) 1982, 2014, Oracle and/or its affiliates.  All rights reserved.
 
@@ -44,7 +52,7 @@ PHOTO                             DERIVED     *  EOF      CHARACTER
 
 
 Table IMAGES:
-  8 Rows successfully loaded.
+  33 Rows successfully loaded.
   0 Rows not loaded due to data errors.
   0 Rows not loaded because all WHEN clauses were failed.
   0 Rows not loaded because all fields were null.
@@ -54,10 +62,21 @@ Space allocated for bind array:                 180608 bytes(64 rows)
 Read   buffer bytes: 1048576
 
 Total logical records skipped:          0
-Total logical records read:             8
+Total logical records read:            33
 Total logical records rejected:         0
 Total logical records discarded:        0
 
+<<<<<<< HEAD
+Run began on Sun Mar 27 16:54:32 2016
+Run ended on Sun Mar 27 16:54:32 2016
+
+Elapsed time was:     00:00:00.64
+CPU time was:         00:00:00.14
+=======
+<<<<<<< HEAD
+Run began on Sun Mar 27 16:44:09 2016
+Run ended on Sun Mar 27 16:44:09 2016
+=======
 <<<<<<< HEAD
 Run began on Sat Mar 26 13:13:51 2016
 Run ended on Sat Mar 26 13:13:51 2016
@@ -67,7 +86,9 @@ CPU time was:         00:00:00.02
 =======
 Run began on Sat Mar 26 18:30:50 2016
 Run ended on Sat Mar 26 18:30:50 2016
+>>>>>>> 48a2eb2b1d27b7b13316f8f5745abdcb2bf4fb2e
 
-Elapsed time was:     00:00:00.22
+Elapsed time was:     00:00:00.28
 CPU time was:         00:00:00.04
 >>>>>>> f4a2ec0d04f6dc941133048f7459a583301f1be1
+>>>>>>> f575553eb5dd9947d8eec26ac4cf6d3d6fec97a7
