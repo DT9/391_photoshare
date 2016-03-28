@@ -10,7 +10,7 @@ include("connection_database.php");
             $user=$_POST['username'];
             $pswd=$_POST['password'];
             //if($ccid==''||$name==''){echo 'error';}
-		 $_SESSION['user-name']=$user;
+		 //$_SESSION['user-name']=$user;
 	    ini_set('display_errors', 1);
 	    error_reporting(E_ALL);
 	    
@@ -45,7 +45,7 @@ include("connection_database.php");
 	    	exit;
 	    }
 	    else{
-		 //$_SESSION['user-name']="$user";	    
+		 $_SESSION['user-name']="$user";	    
 	    header("location:http://consort.cs.ualberta.ca/~jianle/database_site/391_photoshare/mainpage.html");}
 	    echo "good good";
 	    

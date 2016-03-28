@@ -1,12 +1,40 @@
 <!--<!DOCTYPE html>-->
 
 <?php
-include("connection_database.php");
-session_start();
-	//connect();
-	//echo "<h1>hello</h1>";
-	$user=$_SESSION['user-name'];
-	echo "hello $user";
+      //////////////////////get user's information///////////////////////////
+			include("connection_database.php");
+			session_start();
+	      $conn=connect();
+	      
+	      
+	      if (!$conn) {
+    		$e = oci_error();
+    		trigger_error(htmlentities($e['message'], ENT_QUOTES), E_USER_ERROR);
+	    }
+			$user=$_SESSION['user-name'];
+			//echo "hello $user";
+			
+			$sql='select * from Persons where user_name=\''.$user.'\'';
+			//echo $sql;
+	    //Prepare sql using conn and returns the statement identifier
+	    $stid = oci_parse($conn, $sql);
+	    
+	    //Execute a statement returned from oci_parse()
+	    $res=oci_execute($stid);
+	    
+	    while ($row=oci_fetch_array($stid,OCI_BOTH)){
+	    	//echo "good";
+	    	$username= $row[0]; 
+	    	$firstname=$row[1];
+	    	$lastname=$row[2];
+	    	$address=$row[3];
+	    	$email=$row[4];
+	    	$phone=$row[5];
+	    	}
+	    //$row=oci_fetch_array($stid,OCI_BOTH)
+	    oci_free_statement($stid);
+	    oci_close($conn);			
+	    /////////////////////end get user's info///////////////////////////////
 ?>
 
 <html lang="en">
@@ -20,7 +48,9 @@ session_start();
     </head>
     
     <body>
+    
 
+			
         <div id="contenedor">
             
             
@@ -45,7 +75,18 @@ session_start();
             
             
                 <div id="cuerpo">
-                <input class="text-input" type="text" value="<?php echo $_SESSION['user-name'];?>"/>
+                <div id="profile-info"> 
+               <h3> 
+       			<?php echo "Username: $username"; ?><br>
+                <?php echo "First name: $firstname"; ?> <br>
+                <?php echo "Last name: $lastname"; ?>   <br>         
+                <?php echo "Address: $address"; ?>  <br>             
+                <?php echo "Email: $email"; ?>  <br> 
+                <?php echo "Phone: $phone"; ?>   <br> 
+                </h3>           
+                 </div>
+                
+                
                     <div id="up_izq"><h3>GALLERY</h3></div>
                     
                     
