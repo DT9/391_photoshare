@@ -5,6 +5,7 @@
 //how to use <img src="pullimage.php?id=1&type=thumbnail" width="175" height="200" />
 
 // do some validation here to ensure id is safe
+
 	$myblobid = $_GET['id'];;
 	$myimgtype = $_GET['type'];
 
@@ -19,7 +20,7 @@
 	$myimgtype = strtoupper($myimgtype);
 	$result = $arr[$myimgtype]->load();
 
-	header("Content-type: image/JPEG");
+	header("Content-type: image/jpg");
 	echo $result;
 
 	oci_close($conn);
