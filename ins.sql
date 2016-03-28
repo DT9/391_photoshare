@@ -29,3 +29,4 @@ INSERT INTO group_lists VALUES (5, 'nathaniel', TO_DATE('01/01/2011 12:12:12', '
 
 
 COMMIT;
+quit;

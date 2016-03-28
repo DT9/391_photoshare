@@ -13,7 +13,7 @@
 
 </head>
 <style type="text/css">
-    #chickenbutt {}
+    #chickenbutt {
 </style>
 
 <body>
@@ -41,7 +41,7 @@
         </div>
   <script>
   $(function() {
-    $( "#datepicker" ).datepicker();
+    $( "#date" ).datepicker();
   });
   </script>
         <script type="text/javascript">
@@ -62,72 +62,82 @@
 
         <div id="chickenbutt" class="text-center"><br>
           <?php
-					$id = $_GET['id'];
-					include("connection_database.php");
-					$conn=connect();
+            session_start();
+			$id = $_GET['id'];
+			include("connection_database.php");
+			$conn=connect();
 
-          if (isset($_POST['action'])) {
-            if (isset($_POST['delete'])) {
-              $query = "delete FROM images where photo_id = $id";
+            //DELETES IMAGE
+            if (isset($_REQUEST['delete'])) {
+              $query = "delete FROM images where photo_id = '".$id."'";
               $stmt = oci_parse ($conn, $query);
-              oci_execute($stmt);
-              header("Location: mainpage.html?delete=true");
+              $res = oci_execute($stmt);              
+              header("Location: ./mainpage.html");
+              die();
             }
-            elseif (isset($_POST['edit'])) {
+            //UPDATES IMAGE
+            elseif (isset($_REQUEST['edit'])) {
               $query = "UPDATE images SET ";
-              if (isset($_POST['subj'])) $query.= " subject = '$_POST['subj']'";
-              if (isset($_POST['date'])) $query.= " timing = '$_POST['date']'";
-              if (isset($_POST['place'])) $query.= " place = '$_POST['place']'";
-              if (isset($_POST['desc'])) $query.= " description = '$_POST['desc']'";
-              if (isset($_POST['group'])) $query.= " permitted = '$_POST['group']'";
+              if (isset($_REQUEST['subj'])) $query.= " subject = '".$_REQUEST['subj']."',";
+              if (isset($_REQUEST['date'])) $query.= " timing = TO_DATE('".$_REQUEST['date']."','MM/DD/YYYY'),";
+              if (isset($_REQUEST['place'])) $query.= " place = '".$_REQUEST['place']."',";
+              if (isset($_REQUEST['desc'])) $query.= " description = '".$_REQUEST['desc']."',";
+              if (isset($_REQUEST['group'])) $query.= " permitted = '".$_REQUEST['group']."'";
               $query.=" WHERE photo_id='$id' ";
               $stmt = oci_parse ($conn, $query);
               oci_execute($stmt);
-              echo "UPDATED";
             }
-          }
-
-
-					$query = "SELECT * FROM images where photo_id = $id";
-					$stmt = oci_parse ($conn, $query);
-					oci_execute($stmt);
-					$arr = oci_fetch_array($stmt, OCI_ASSOC);
-					echo '<img src="pullimage.php?id='.$id.'&type=photo" />';
-					//oci_close($conn);
-                    $sql = "select * from group_lists g,images i,groups s where i.photo_id = ".$id." and g.friend_id = i.owner_name and s.group_id = g.group_id and g.group_id != 1 and g.group_id != 2";
-                    $fin  = "";
-				    $stid = oci_parse($conn,$sql);
-				    $res = oci_execute($stid);
-				    while (($row = oci_fetch_array($stid, OCI_ASSOC))) {
-                        $selected = "";
-                        if ($arr[$id] == $res['GROUP_ID']) {$selected = "selected";}
-				        $fin.='<option value="'.$row['GROUP_ID'].'" '.$selected.'>'.$row['GROUP_NAME'].'</option>';
+                try {//COUNTS DISTINCT USER VIEWS
+                    $user_name = $_SESSION['user_name'];                    
+                    $user_name = "john";                       
+                    $stmt = oci_parse ($conn, $query);              
+                    $query = "INSERT into photo_count(user_name,photo_id,count) 
+                    values ( '".$user_name."','$id',1)";
+                    oci_execute($stmt);
+                }
+                catch (Exception $e) {}
+                //DISPLAYS IMAGE
+                $query = "SELECT * FROM images where photo_id = $id";
+                $stmt = oci_parse ($conn, $query);
+                oci_execute($stmt);
+    			$arr = oci_fetch_array($stmt, OCI_ASSOC);
+    			echo '<img src="pullimage.php?id='.$id.'&type=photo" />';
+    			
+                //GETS IMAGE GROUPS     
+                $sql = "select s.group_id, s.group_name from group_lists g,images i,groups s where i.photo_id = ".$id." and g.friend_id = i.owner_name and s.group_id = g.group_id union select group_id, group_name from groups where group_id = 1 or group_id = 2";
+                $fin  = "";
+    		    $stid = oci_parse($conn,$sql);
+    		    $res = oci_execute($stid);
+    		    while (($row = oci_fetch_array($stid, OCI_ASSOC))) {
+                    $selected = "";
+                    if ($arr['PERMITTED'] == $row['GROUP_ID']) {$selected = "selected";}
+    		        $fin.='<option value="'.$row['GROUP_ID'].'" '.$selected.'>'.$row['GROUP_NAME'].'</option>';
 				    }
-
-				?>
+            oci_close($conn);
+			?>
         </div>
         <div id="update">
-            <form action="">
+            <form >
 				<fieldset class="form-group" >
                 <label for="exampleTextarea">Subject</label>
                 <textarea class="form-control" name="subj" rows="1"
-                    placeholder='<?php echo $arr["SUBJECT"];?>'></textarea>
+                    placeholder='<?php echo $arr["SUBJECT"];?>' value='<?php echo $arr["SUBJECT"];?>'></textarea>
                 </fieldset>
                	<fieldset class="form-group" >
                 <label for="exampleTextarea">Place</label>
                 <textarea class="form-control" name="place" rows="1"
-                    placeholder='<?php echo $arr["PLACE"];?>'></textarea>
+                    placeholder='<?php echo $arr["PLACE"];?>' value='<?php echo $arr["PLACE"];?>'></textarea>
                 </fieldset>
                	<fieldset class="form-group" >
                 <label for="exampleTextarea">Timing/When</label>
-                <input class="form-control date" name="date" rows="1"
-                    placeholder='<?php echo $arr["TIMING"];?>'></input>
+                <input class="form-control date" name="date" id="date" rows="1"
+                    placeholder='<?php echo $arr["TIMING"];?>' ></input>
                 </fieldset>
 
                 <fieldset class="form-group" >
                 <label for="exampleTextarea">Description</label>
                 <textarea class="form-control" name="desc" rows="3"
-                    placeholder='<?php echo $arr["DESCRIPTION"];?>'></textarea>
+                    placeholder='<?php echo $arr["DESCRIPTION"];?>' value='<?php echo $arr["DESCRIPTION"];?>'></textarea>
                 </fieldset>
                 <input type="hidden" name="id" value="<?php echo $id; ?>">
                 <div class="">
@@ -135,23 +145,19 @@
 				      Permitted
 				    </label>
 				    <select class="c-select" name="group">
-                        <option value="1">Public</option>
-                        <option value="2">Private</option>
 				        <?php echo $fin; ?>
 					</select>
                 </div>
-                <button type="submit" name="edit" class="btn btn-primary">Submit</button>
+                <button type="submit" name="edit" value="true" class="btn btn-primary">Submit</button>
             </form>
         </div>
-        <form action="">
-          <button type="submit" name="delete" class="btn btn-primary">Delete Photo</button>
+        <form >
+        <input type="hidden" name="id" value="<?php echo $id; ?>">
+          <button type="submit" name="delete" value="true" class="btn btn-primary">Delete Photo</button>
         </form>
-
+        <br>
 
         <div id="pie">
-
-
-
             <div id="pie_l">
                 <ul>
                     <li><a href="mainpage.html">HOME</a></li>

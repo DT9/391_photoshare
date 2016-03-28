@@ -99,15 +99,15 @@ CREATE TABLE images (
    FOREIGN KEY(permitted) REFERENCES groups
 );
 CREATE TABLE photo_count (
+   user_name varchar(24),
    photo_id varchar(50),
-   photo_count int,
-   photo_place_count int,
-   frequency_description int,
    count int,
-   place_count int,
+   place int,
    description int,
-   PRIMARY KEY(photo_id),
-   FOREIGN KEY(photo_id) REFERENCES images
+   PRIMARY KEY(user_name,photo_id),
+   UNIQUE (user_name,photo_id),
+   FOREIGN KEY(photo_id) REFERENCES images,
+   FOREIGN KEY(user_name) REFERENCES users
 );
 
 --MAKE DUH DATA CUBE
@@ -140,3 +140,6 @@ begin
       dbms_output.put_line('job '||job||' has been submitted.');
    end loop;
 end;
+
+commit;
+quit;
