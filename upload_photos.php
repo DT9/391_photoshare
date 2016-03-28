@@ -80,13 +80,11 @@ for($i=0; $i<count($_FILES['image']['name']); $i++) {
         		echo "<center>I'm Here!</center><br/>";
             $image= addslashes($_FILES['image']['tmp_name'][$i]);
             $image= file_get_contents($image);
-            $image= base64_encode($image);
             
 				            
             
             $thumbnail = scaleImageFileToBlob($_FILES['image']['tmp_name'][$i]);            
             
-            $thumbnail = base64_encode($thumbnail);
        
        
        echo"shiiiiiiiit";
