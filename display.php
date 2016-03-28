@@ -88,8 +88,7 @@
               oci_execute($stmt);
             }
                 try {//COUNTS DISTINCT USER VIEWS
-                    $user_name = $_SESSION['user_name'];                    
-                    $user_name = "john";                       
+                    $user_name = $_SESSION['user-name'];                    
                     $stmt = oci_parse ($conn, $query);              
                     $query = "INSERT into photo_count(user_name,photo_id,count) 
                     values ( '".$user_name."','$id',1)";
@@ -97,14 +96,14 @@
                 }
                 catch (Exception $e) {}
                 //DISPLAYS IMAGE
-                $query = "SELECT * FROM images where photo_id = $id";
+                $query = "SELECT * FROM images where photo_id = '$id'";
                 $stmt = oci_parse ($conn, $query);
                 oci_execute($stmt);
     			$arr = oci_fetch_array($stmt, OCI_ASSOC);
     			echo '<img src="pullimage.php?id='.$id.'&type=photo" />';
     			
                 //GETS IMAGE GROUPS     
-                $sql = "select s.group_id, s.group_name from group_lists g,images i,groups s where i.photo_id = ".$id." and g.friend_id = i.owner_name and s.group_id = g.group_id union select group_id, group_name from groups where group_id = 1 or group_id = 2";
+                $sql = "select s.group_id, s.group_name from group_lists g,images i,groups s where i.photo_id = '".$id."' and g.friend_id = i.owner_name and s.group_id = g.group_id union select group_id, group_name from groups where group_id = 1 or group_id = 2";
                 $fin  = "";
     		    $stid = oci_parse($conn,$sql);
     		    $res = oci_execute($stid);
