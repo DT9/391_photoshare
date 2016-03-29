@@ -15,9 +15,12 @@
 	$group = $_GET['group'];
 	$profile = $_GET['profile'];
 	$mainpage = $_GET['main'];
+	$admin = $_SESSION['admin'];
 
-
-	if ($profile) {
+	if ($admin) {
+		$query = "SELECT photo_id FROM images";	
+	}
+	elseif ($profile) {
 		$query = "select photo_id from images where owner_name = '$user'";
 	}
 	elseif ($mainpage) {

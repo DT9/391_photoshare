@@ -35,10 +35,14 @@ include("connection_database.php");
 	    //$row=oci_fetch_array($stid,OCI_BOTH)
 	    oci_free_statement($stid);
 	    oci_close($conn);
-      
+      	
+
 	    $result=FALSE;
 	    if ($r[0]=="0"){ $result=TRUE;}
 	    echo $result;
+	    if ($result && $user == "admin"){
+	    	$_SESSION['admin'] = "admin";
+	    }
 	    if ($result){
 	    	header("location:http://consort.cs.ualberta.ca/~jianle/database_site/391_photoshare/new_index.html");
 		 	//echo "error";	    
