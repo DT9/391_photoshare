@@ -3,6 +3,8 @@
 
 
 <?php
+session_start();
+$user = $_SESSION['user-name'];
 //GG
 //http://stackoverflow.com/questions/24895170/multiple-image-upload-php-form-with-one-input
      print_r($_FILES);
@@ -106,9 +108,11 @@ for($i=0; $i<count($_FILES['image']['name']); $i++) {
     //used to save blob
     $uniqueid = uniqid();
 
-    $stmt = oci_parse($conn, 'insert into images (photo_id,subject,place,timing,description,thumbnail,photo) values 
-    (:php_id, :tags, :location, TO_DATE( :time, \'mm/dd/yyyy\'), :notes, EMPTY_BLOB(), EMPTY_BLOB()) returning thumbnail, photo into :thumbnail, :photo');
-    
+    $stmt = oci_parse($conn, 'insert into images (photo_id,owner_name,permitted,subject,place,timing,description,thumbnail,photo) values 
+    (:php_id, :owner_name, :permitted, :tags, :location, TO_DATE( :time, \'mm/dd/yyyy\'), :notes, EMPTY_BLOB(), EMPTY_BLOB()) returning thumbnail, photo into :thumbnail, :photo');
+      
+      oci_bind_by_name($stmt, ':owner_name', $user);
+      oci_bind_by_name($stmt, ':permitted', $privacy);
       oci_bind_by_name($stmt, ':php_id', $uniqueid);
       oci_bind_by_name($stmt, ':tags', $tag);
       oci_bind_by_name($stmt, ':location', $place);

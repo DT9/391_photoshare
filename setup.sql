@@ -125,7 +125,7 @@ create index date_index on images(timing);
 create index desc_index on images(description) indextype is ctxsys.context;
 create index place_index on images(place) indextype is ctxsys.context;
 
---make dem indexes update bro
+--indexes update on interval
 define interval = "3"
 set serveroutput on
 declare
