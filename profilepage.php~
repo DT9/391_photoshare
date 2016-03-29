@@ -35,11 +35,7 @@
 	    oci_free_statement($stid);
 	    oci_close($conn);			
 	    /////////////////////end get user's info///////////////////////////////
-include("connection_database.php");
-session_start();
-	//connect();
-	//echo "<h1>hello</h1>";
-	$user=$_SESSION['user-name'];
+
 ?>
 
 <html lang="en">
@@ -149,12 +145,15 @@ session_start();
                         $("#chickenbutt").html(txt);
                     }
                 };
-                var user = $("#user").val();
-                var thumb = "thumb.php"+location.search;
+                var thumb = "thumb.php";
+                if (location.search) thumb += location.search + "&" + str;
+                else {
+                    thumb += "?" + str;
+                }
                 xmlhttp.open("GET", thumb, true);
                 xmlhttp.send();
             };
-            fivethumb(0);
+            fivethumb("profile=true");
             //popularity of an image is specified by the number of distinct users that have ever viewed the image
         </script>  
                 

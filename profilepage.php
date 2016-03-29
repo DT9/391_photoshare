@@ -35,11 +35,7 @@
 	    oci_free_statement($stid);
 	    oci_close($conn);			
 	    /////////////////////end get user's info///////////////////////////////
-include("connection_database.php");
-session_start();
-	//connect();
-	//echo "<h1>hello</h1>";
-	$user=$_SESSION['user-name'];
+
 ?>
 
 <html lang="en">

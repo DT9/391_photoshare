@@ -19,7 +19,7 @@
 		$query = "select photo_id from images where owner_name = '$user'";
 	}
 	elseif ($mainpage) {
-		$query = "select photo_id from images where ";
+		$query = "select photo_id from images where "
 	}
 	else {
 		$query = "SELECT photo_id FROM images";

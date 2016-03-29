@@ -1,6 +1,23 @@
 <!DOCTYPE html>
 <!-- picture upload is from http://bootsnipp.com/snippets/featured/bootstrap-drag-and-drop-upload-->
+    
+    
+                                             <?php 
+                                             session_start();
+															include("connection_database.php");
+															
+															$conn=connect();
+															$username = $_SESSION['user-name'];
 
+															function getres($sql,$conn) {
+													    $stid = oci_parse($conn,$sql);
+														    $res = oci_execute($stid);
+ 													   while (($row = oci_fetch_array($stid, OCI_ASSOC))) {
+ 												       foreach($row as $item)   {
+ 											           echo '<option>'.$item.'</option>';
+ 													       }
+															    }
+																}?>
 <html>
     <head>
     <!-- Latest compiled and minified CSS -->
@@ -97,22 +114,29 @@
     
     
     
-    
-    
-    
+
+                                            
     
     
     
     <div class="container-projects bg-warning">
         <div class="container">
             <h1 id="projects" class="text-center">Delete a group!</h1>
+            <h3><?php echo "username = $username";?> <br></h3>
             <div class="row">
                 <form action="deletegroup.php" method="post" enctype="multipart/form-data">
                     <div class="text-center">
                                             <label>Groups</label>
-                                            <select id="user" class="form-control">
-                                            <option>penis</option>
+                                            
+                                            <select id="group" class="form-control">
+                                                <?php
+                                                    getres('select group_name from groups where user_name = \''.$username.'\'',$conn);
+                                                ?>
                                             </select>
+                                            
+   
+                                            
+                                            
                                 <br><input type="submit" value="Delete group!" id="selectedButton" color="black"/>
                     </div>
                 </form>
@@ -127,4 +151,9 @@
         </center>
 
     </body>
+    
+
+    
+    
+    
 </html>

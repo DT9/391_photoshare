@@ -40,15 +40,16 @@ include("connection_database.php");
 	    if ($r[0]=="0"){ $result=TRUE;}
 	    echo $result;
 	    if ($result){
-	    	header("location:http://consort.cs.ualberta.ca/~jianle/database_site/391_photoshare/new_index.html");
+	    	header("Location: ./new_index.html");
 		 	//echo "error";	    
 	    	exit;
 	    }
 	    else{
 		 $_SESSION['user-name']="$user";	    
-	    header("location:http://consort.cs.ualberta.ca/~jianle/database_site/391_photoshare/mainpage.html");}
-	    echo "good good";
+	    header("Location: ./mainpage.html");
 	    
+	    echo "good good";
+	    }
 	    
 	    
 	    //if error, retrieve the error using the oci_error() function & output an error message

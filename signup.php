@@ -17,7 +17,7 @@ include("connection_database.php");
             
             //if not all parts are filled, unsuccessful 
 				if ($user==''or $pswd=='' or $fn=='' or $ln=='' or $address=='' or $email=='' or $phone==''){
-				header("location:http://consort.cs.ualberta.ca/~jianle/database_site/391_photoshare/signup.html");	    
+				header("Location: ./signup.html");	    
 	    		exit;				
 				}
 				
@@ -54,7 +54,7 @@ include("connection_database.php");
 	    if ($r!='0'){ $result=TRUE;}
 	    echo $result;
 	    if ($result){
-	    	header("location:http://consort.cs.ualberta.ca/~jianle/database_site/391_photoshare/signup.html");
+	    	header("Location: ./signup.html");
 		 	echo "error";	    
 	    	exit;
 	    }
