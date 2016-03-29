@@ -89,9 +89,9 @@
             }
                 try {//COUNTS DISTINCT USER VIEWS
                     $user_name = $_SESSION['user-name'];                    
+                    $query = "INSERT into photo_count(user_name,photo_id) 
+                    values ( '$user_name','$id')";
                     $stmt = oci_parse ($conn, $query);              
-                    $query = "INSERT into photo_count(user_name,photo_id,count) 
-                    values ( '".$user_name."','$id',1)";
                     oci_execute($stmt);
                 }
                 catch (Exception $e) {}
