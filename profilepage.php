@@ -149,12 +149,15 @@ session_start();
                         $("#chickenbutt").html(txt);
                     }
                 };
-                var user = $("#user").val();
-                var thumb = "thumb.php"+location.search;
+                var thumb = "thumb.php";
+                if (location.search) thumb += location.search + "&" + str;
+                else {
+                    thumb += "?" + str;
+                }
                 xmlhttp.open("GET", thumb, true);
                 xmlhttp.send();
             };
-            fivethumb(0);
+            fivethumb("profile=true");
             //popularity of an image is specified by the number of distinct users that have ever viewed the image
         </script>  
                 
