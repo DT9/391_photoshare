@@ -35,7 +35,7 @@ if (!$conn) {
 	
 	
 	
-	$sat = 'delete from group_list where group_id = :result';
+	$sat = 'delete from group_lists where group_id = :result';
 	
 	$stid = oci_parse($conn, $sat);	
 	oci_bind_by_name($stid, ':result', $result);

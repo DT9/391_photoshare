@@ -68,14 +68,10 @@
                 <form action="group_edit.php" method="post" enctype="multipart/form-data">
                     <div class="text-center">
                                             <label>Groups</label>
-                                            <input name="group" multiple="" class="form-control"></input>Group List
-                                            <select id="user" class="form-control">
-                                            </select>
+                                            <input name="group" multiple="" class="form-control">
                                             <div>
                                             <label>Users</label>
                                             <input id="noob" name="user" multiple="" class="form-control"></input>
-                                            User List
-                                            <select id="noob" multiple="" class="form-control"></select>
                                             Description
                                             <input id="noob" name="desc" multiple="" class="form-control"></input>
                                             <div>
@@ -95,14 +91,11 @@
                 <form action="group_user_delete.php" method="post" enctype="multipart/form-data">
                     <div class="text-center">
                                             <label>Groups</label>
-                                            <input name="group" multiple="" class="form-control"></input>Group List
-                                            <select id="user" class="form-control">
-                                            </select>
+                                            <input name="group" multiple="" class="form-control">
                                             <div>
-                                            <label>Users</label>
+                                            <label>User</label>
                                             <input id="noob" name="user" multiple="" class="form-control"></input>
-                                            User List
-                                            <select id="noob" multiple="" class="form-control"></select>
+                                          
                                             <div>
                         <br><input type="submit" value="Delete User" id="selectedButton" color="black"/>
                     </div>
@@ -122,7 +115,7 @@
     <div class="container-projects bg-warning">
         <div class="container">
             <h1 id="projects" class="text-center">Delete a group!</h1>
-            <h3><?php echo "username = $username";?> <br></h3>
+            <h3><?php echo "username is: $username";?> <br></h3>
             <div class="row">
                 <form action="deletegroup.php" method="post" enctype="multipart/form-data">
                     <div class="text-center">
