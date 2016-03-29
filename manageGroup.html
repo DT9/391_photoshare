@@ -51,18 +51,16 @@
                 <form action="group_edit.php" method="post" enctype="multipart/form-data">
                     <div class="text-center">
                                             <label>Groups</label>
+                                            <input name="group" multiple="" class="form-control"></input>Group List
                                             <select id="user" class="form-control">
-                                                <?php
-                                                    getres("select group_name from groups",$conn);
-                                                ?>
                                             </select>
                                             <div>
                                             <label>Users</label>
-                                            <select id="noob" multiple="" class="form-control">
-                                                <?php
-                                                    getres("select user_name from users",$conn);
-                                                ?>
-                                            </select>
+                                            <input id="noob" name="user" multiple="" class="form-control"></input>
+                                            User List
+                                            <select id="noob" multiple="" class="form-control"></select>
+                                            Description
+                                            <input id="noob" name="desc" multiple="" class="form-control"></input>
                                             <div>
                         <br><input type="submit" value="Update group!" id="selectedButton" color="black"/>
                     </div>

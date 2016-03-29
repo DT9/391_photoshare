@@ -1,7 +1,7 @@
 <body>
-<img src="pullimage.php?id=1&type=photo"  />
 <?php 
-
+session_start();
+print_r($_SESSION);
 
 ?>
 </body>
