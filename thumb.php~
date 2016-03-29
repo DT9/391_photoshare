@@ -5,6 +5,7 @@
 //how to use <img src="pullimage.php?id=1&type=thumbnail" width="175" height="200" />
 	session_start();
 	include("connection_database.php");
+	$conn=connect();
 	// do some validation here to ensure id is safe
 	$user = $_SESSION['user-name'];
 	$freq = $_GET['freq'];
@@ -14,18 +15,25 @@
 	$group = $_GET['group'];
 	$profile = $_GET['profile'];
 	$mainpage = $_GET['main'];
-	
-	if ($profile) {
+	$admin = $_SESSION['admin'];
+
+	if ($admin) {
+		$query = "SELECT photo_id FROM images";	
+	}
+	elseif ($profile) {
 		$query = "select photo_id from images where owner_name = '$user'";
 	}
 	elseif ($mainpage) {
-		$query = "select photo_id from images where "
+<<<<<<< HEAD
+		$query = "select photo_id from images where ";
+=======
+		$query = "select photo_id from images where permitted = '1' or owner_name = '$user' or permitted in (select group_id from group_lists where friend_id = '$user' union select group_id from groups where user_name = '$user' )";
+>>>>>>> 6d67fd728440ad7ccafa2c5d984fe5611ddb0f39
 	}
 	else {
 		$query = "SELECT photo_id FROM images";
 	}
-	function imagequery($query) {
-		$conn=connect();
+	function imagequery($query,$conn) {
 		$stmt = oci_parse ($conn, $query);
 		oci_execute($stmt);
 		while ($arr = oci_fetch_array($stmt, OCI_ASSOC)){
@@ -33,7 +41,7 @@
 			echo '<a href="display.php?id='.$id.'"><img src="pullimage.php?id='.$id.'&type=thumbnail" width="175" height="200" /></a>';
 		}	
 	}
-	imagequery($query);
+	imagequery($query,$conn);
 	oci_close($conn);
 
 //freq recent oldest

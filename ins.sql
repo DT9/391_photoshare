@@ -4,6 +4,7 @@ INSERT INTO users VALUES ('donald', 'donald123', TO_DATE('2/11/2013 2:19:32', 'D
 INSERT INTO users VALUES ('donald2', 'donald123',  TO_DATE('24/12/2013 19:17:2', 'DD/MM/YYYY hh24:mi:ss'));
 INSERT INTO users VALUES ('marilyn', 'marilyn123',  TO_DATE('12/5/2013 20:12:51', 'DD/MM/YYYY hh24:mi:ss'));
 INSERT INTO users VALUES ('nathaniel', 'nathaniel123', TO_DATE('31/1/2015 13:11:32', 'DD/MM/YYYY hh24:mi:ss'));
+INSERT INTO users VALUES ('admin', 'admin', TO_DATE('31/1/2015 13:11:32', 'DD/MM/YYYY hh24:mi:ss'));
 
 INSERT INTO persons VALUES ('john', 'John', 'Doe', '1248 Blane Street', 'johndoe@yahoo.com', '3145542033');
 INSERT INTO persons VALUES ('donald', 'Donald', 'Stein', '2734 Veltri Drive', 'dstein@yahoo.com', '3335552233');

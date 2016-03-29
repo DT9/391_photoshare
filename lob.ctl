@@ -1,5 +1,5 @@
 LOAD DATA 
-INFILE 'lob.txt'
+INFILE 'lob.txts'
    INTO TABLE images
    FIELDS TERMINATED BY ','   
    (photo_id CHAR(10),

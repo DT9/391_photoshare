@@ -22,7 +22,19 @@
                         
     </head>
 
+    <?php 
+    session_start();
+    $user = $_SESSION['user-name'];
+include("connection_database.php");
+$conn=connect();
 
+function getres($sql,$conn) {
+    $stid = oci_parse($conn,$sql);
+    $res = oci_execute($stid);
+    while (($row = oci_fetch_array($stid, OCI_ASSOC))) {      
+      echo '<option value="'.$row['GROUP_ID'].'">'.$row['GROUP_NAME'].'</option>';        
+    }
+}?>
 
     <body>
     
@@ -30,10 +42,10 @@
     	<div id="cabecera">
     		<div id="logo">
                     
-         	<h1>Upload Your Image</h1>
+         	<h1>Upload Your Image: <?php echo $user; ?></h1>
       	</div>
     	</div>
-    
+
 		
     
     	
@@ -47,12 +59,12 @@
             	
             	<p>Tag:<input type="search" id="tag" name="tag"placeholder="Split tags with spacebar"></p>
             	<p>Privacy:</p>
+                          <select name="privacy" class="form-control">
+                                  <?php
+                                      getres("select s.group_id, s.group_name from group_lists g,groups s where g.friend_id = '".$user."' and s.group_id = g.group_id union select group_id, group_name from groups where group_id = 1 or group_id = 2",$conn);
 
- 						 <input type="radio" name="privacy" value="public" checked> Public<br>
- 						 <input type="radio" name="privacy" value="group"> Groups Only<br>
- 						 <input type="radio" name="privacy" value="meonly"> Only Me  
-
-            
+                                  ?>
+                              </select>
     			<p>Comments:</p>
 
 					<div>
