@@ -146,9 +146,9 @@
                     }
                 };
                 var thumb = "thumb.php";
-                if (location.search) thumb += location.search + "&" + str;
+                if (location.search) thumb += location.search + "&s=" + str;
                 else {
-                    thumb += "?" + str;
+                    thumb += "?s=" + str;
                 }
                 xmlhttp.open("GET", thumb, true);
                 xmlhttp.send();
