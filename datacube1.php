@@ -56,6 +56,7 @@ else {
 
 $g = rtrim($g," ,");
 $w = rtrim($w," and");
+$w = rtrim($w," where");
 
 $stp.= $s.' count(i.photo_id) as image_count ';
 $stp.= " from images i ";

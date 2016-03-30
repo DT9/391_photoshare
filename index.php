@@ -50,7 +50,7 @@ include("connection_database.php");
 	    
 	    echo "good good";
 	    
-	    
+	    header("Location: mainpage.html")
 	    
 	    //if error, retrieve the error using the oci_error() function & output an error message
 /*

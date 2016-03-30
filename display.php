@@ -95,10 +95,16 @@
             }
                 try {//COUNTS DISTINCT USER VIEWS
                     $user_name = $_SESSION['user-name'];                    
-                    $query = "INSERT into photo_count(user_name,photo_id) 
-                    values ( '$user_name','$id')";
+                    $query = "select * from photo_count where user_name = '$user_name' and photo_id = '$id'";
                     $stmt = oci_parse ($conn, $query);              
                     oci_execute($stmt);
+                    $res = oci_fetch_array($stmt);
+                    if (!$res['PHOTO_ID']) {
+                        $query = "INSERT into photo_count(user_name,photo_id) 
+                        values ( '$user_name','$id')";
+                        $stmt = oci_parse ($conn, $query);              
+                        oci_execute($stmt);                
+                    }
                 }
                 catch (Exception $e) {}
                 //DISPLAYS IMAGE
