@@ -320,7 +320,7 @@ function getres($sql,$conn) {
                                             <select id="user" class="form-control">
                                                 <option>All</option>
                                                 <option>None</option>
-                                                <?php getres("select user_name from user",$conn); ?>
+                                                <?php getres("select user_name from users",$conn); ?>
                                             </select>
                                         </div>
                                     <div class="form-group col-lg-4">
@@ -525,7 +525,7 @@ function ajaxgraph(str) {
     var user = $('#user').find(":selected").text();
     var subj = $('#subj').find(":selected").text();
     var date = $('#period').find(":selected").text();
-    xmlhttp.open("GET", "datacube.php?user="+user+"&subj="+subj+"&date="+date, true);
+    xmlhttp.open("GET", "datacube1.php?user="+user+"&subj="+subj+"&date="+date, true);
     xmlhttp.send();
 
 }
