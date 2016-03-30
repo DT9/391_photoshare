@@ -125,6 +125,17 @@
                         </ul>
                     </div>
                     
+						<div id="nav">
+                 <ul>
+                     <li><a href="javascript:void(0);"
+                         NAME="My Window Name"  title=" My title here "
+                         onClick=window.open("manageGroup.php","Ratting","width=550,height=700,0,status=0,scrollbars=1");>--Manage Groups--</a></li>
+                          
+                 </ul>
+           		 </div>                    
+                    
+                    
+                    
                     <div id="up_der"><form id="gform" action="/search.html/" method="get" name="jumpto"><select name="c" onchange="javascript: submit();"><option value="0">Frequent</option><option value="1">Most Recent</option><option value="2">Oldest</option></select></form></div>
                 </div>           
       
@@ -146,9 +157,9 @@
                     }
                 };
                 var thumb = "thumb.php";
-                if (location.search) thumb += location.search + "&s=" + str;
+                if (location.search) thumb += location.search + "&" + str;
                 else {
-                    thumb += "?s=" + str;
+                    thumb += "?" + str;
                 }
                 xmlhttp.open("GET", thumb, true);
                 xmlhttp.send();

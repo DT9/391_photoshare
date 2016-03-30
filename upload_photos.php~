@@ -171,5 +171,5 @@ for($i=0; $i<count($_FILES['image']['name']); $i++) {
  
       
       oci_close($conn);
-      echo '<center><form method="post" action ="uploadwindow.html"><input type="submit" name="submit" value="continue" /> </form></center>';
+      echo '<center><form method="post" action ="uploadwindow.php"><input type="submit" name="submit" value="continue" /> </form></center>';
 ?>

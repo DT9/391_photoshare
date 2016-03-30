@@ -95,7 +95,7 @@ while (($row = oci_fetch_array($stid, OCI_ASSOC))) {
 	if (isset($row["TWEEK"])) {
 		echo "<td>".$row["TWEEK"]."</td>";
 	}
-	if ($tdate == "None" ) {
+	if ($tdate == "None" || $row[''] ) {
 		echo "<td> NONE </td>";
 	}
 

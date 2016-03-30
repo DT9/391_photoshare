@@ -85,7 +85,7 @@ CREATE TABLE group_lists (
 );
 
 CREATE TABLE images (
-   photo_id    varchar(50),
+   photo_id    int,
    owner_name  varchar(24),
    permitted   int,
    subject     varchar(128),
@@ -101,11 +101,7 @@ CREATE TABLE images (
 CREATE TABLE photo_count (
    user_name varchar(24),
    photo_id varchar(50),
-   count int,
-   place int,
-   description int,
    PRIMARY KEY(user_name,photo_id),
-   UNIQUE (user_name,photo_id),
    FOREIGN KEY(photo_id) REFERENCES images,
    FOREIGN KEY(user_name) REFERENCES users
 );
@@ -119,9 +115,7 @@ create view data_cube as
       extract(month from timing), to_number(to_char(timing,'WW')));
 
 --INDEXES MAN
-create index name_index on images(owner_name) indextype is ctxsys.context;
 create index subject_index on images(subject) indextype is ctxsys.context;
-create index date_index on images(timing);
 create index desc_index on images(description) indextype is ctxsys.context;
 create index place_index on images(place) indextype is ctxsys.context;
 
