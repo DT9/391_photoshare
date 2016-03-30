@@ -62,7 +62,13 @@
 
         <div id="chickenbutt" class="text-center"><br>
           <?php
-            session_start();
+            if(!isset($_SESSION)) { //check if sessions has been initialized
+                 session_start();   //initialize session
+            }
+            if (!isset($_SESSION['user-name'])) { //checks if there's a user
+                die();
+            }
+
 			$id = $_GET['id'];
 			include("connection_database.php");
 			$conn=connect();
