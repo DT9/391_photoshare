@@ -62,16 +62,28 @@
 
         <div id="chickenbutt" class="text-center"><br>
           <?php
-            session_start();
+            if(!isset($_SESSION)) { //check if sessions has been initialized
+                 session_start();   //initialize session
+            }
+            if (!isset($_SESSION['user-name'])) { //checks if there's a user
+                die();
+            }
+			
+	
 			$id = $_GET['id'];
 			include("connection_database.php");
 			$conn=connect();
 
             //DELETES IMAGE
             if (isset($_REQUEST['delete'])) {
+   	        $query = "delete FROM photo_count where photo_id = '".$id."'";
+              $stmt = oci_parse ($conn, $query);
+              $res = oci_execute($stmt);         
+
               $query = "delete FROM images where photo_id = '".$id."'";
               $stmt = oci_parse ($conn, $query);
-              $res = oci_execute($stmt);              
+              $res = oci_execute($stmt);         
+
               header("Location: ./mainpage.html");
               die();
             }
@@ -87,12 +99,19 @@
               $stmt = oci_parse ($conn, $query);
               oci_execute($stmt);
             }
+            $user_name = $_SESSION['user-name'];                    		
                 try {//COUNTS DISTINCT USER VIEWS
-                    $user_name = $_SESSION['user-name'];                    
-                    $query = "INSERT into photo_count(user_name,photo_id) 
-                    values ( '$user_name','$id')";
+
+                    $query = "select * from photo_count where user_name = '$user_name' and photo_id = '$id'";
                     $stmt = oci_parse ($conn, $query);              
                     oci_execute($stmt);
+                    $res = oci_fetch_array($stmt);
+                    if (!$res['PHOTO_ID']) {
+                        $query = "INSERT into photo_count(user_name,photo_id) 
+                        values ( '$user_name','$id')";
+                        $stmt = oci_parse ($conn, $query);              
+                        oci_execute($stmt);                
+                    }
                 }
                 catch (Exception $e) {}
                 //DISPLAYS IMAGE
@@ -103,7 +122,8 @@
     			echo '<img src="pullimage.php?id='.$id.'&type=photo" />';
     			
                 //GETS IMAGE GROUPS     
-                $sql = "select s.group_id, s.group_name from group_lists g,images i,groups s where i.photo_id = '".$id."' and g.friend_id = i.owner_name and s.group_id = g.group_id union select group_id, group_name from groups where group_id = 1 or group_id = 2";
+                $sql = "select s.group_id, s.group_name from group_lists g,images i,groups s where i.photo_id = '".$id."' and g.friend_id = i.owner_name and s.group_id = g.group_id 
+                union select group_id, group_name from groups where group_id = 1 or group_id = 2 or user_name = '$user_name' ";
                 $fin  = "";
     		    $stid = oci_parse($conn,$sql);
     		    $res = oci_execute($stid);
@@ -112,7 +132,6 @@
                     if ($arr['PERMITTED'] == $row['GROUP_ID']) {$selected = "selected";}
     		        $fin.='<option value="'.$row['GROUP_ID'].'" '.$selected.'>'.$row['GROUP_NAME'].'</option>';
 				    }
-            oci_close($conn);
 			?>
         </div>
         <div id="update">
@@ -120,23 +139,23 @@
 				<fieldset class="form-group" >
                 <label for="exampleTextarea">Subject</label>
                 <textarea class="form-control" name="subj" rows="1"
-                    placeholder='<?php echo $arr["SUBJECT"];?>' value='<?php echo $arr["SUBJECT"];?>'></textarea>
+                    placeholder='<?php echo $arr["SUBJECT"];?>' value='<?php echo $arr["SUBJECT"];?>'><?php echo $arr["SUBJECT"];?></textarea>
                 </fieldset>
                	<fieldset class="form-group" >
                 <label for="exampleTextarea">Place</label>
                 <textarea class="form-control" name="place" rows="1"
-                    placeholder='<?php echo $arr["PLACE"];?>' value='<?php echo $arr["PLACE"];?>'></textarea>
+                    placeholder='<?php echo $arr["PLACE"];?>' value='<?php echo $arr["PLACE"];?>'><?php echo $arr["PLACE"];?></textarea>
                 </fieldset>
                	<fieldset class="form-group" >
                 <label for="exampleTextarea">Timing/When</label>
                 <input class="form-control date" name="date" id="date" rows="1"
-                    placeholder='<?php echo $arr["TIMING"];?>' ></input>
+                    placeholder='<?php echo $arr["TIMING"];?>' value='<?php $time = strtotime($arr["TIMING"]); echo date("m\/d\/Y",$time); ?>'></input>
                 </fieldset>
 
                 <fieldset class="form-group" >
                 <label for="exampleTextarea">Description</label>
                 <textarea class="form-control" name="desc" rows="3"
-                    placeholder='<?php echo $arr["DESCRIPTION"];?>' value='<?php echo $arr["DESCRIPTION"];?>'></textarea>
+                    placeholder='<?php echo $arr["DESCRIPTION"];?>' value='<?php echo $arr["DESCRIPTION"];?>'><?php echo $arr["DESCRIPTION"];?></textarea>
                 </fieldset>
                 <input type="hidden" name="id" value="<?php echo $id; ?>">
                 <div class="">
@@ -147,12 +166,34 @@
 				        <?php echo $fin; ?>
 					</select>
                 </div>
-                <button type="submit" name="edit" value="true" class="btn btn-primary">Submit</button>
+                <?php
+						$sql = "select * from images where photo_id = '$id' and owner_name = '$user_name' ";
+ 					 	$stmt = oci_parse ($conn, $sql);
+            		$res = oci_execute($stmt); 
+            		                     
+ 						$res = oci_fetch_array($stmt, OCI_ASSOC);    
+						if ($res['OWNER_NAME'] == $user_name ) {
+                	 echo '<button type="submit" name="edit" value="true" class="btn btn-primary">Submit</button>';
+                }
+                else if ($_SESSION['admin']) {
+                	 echo '<button type="submit" name="edit" value="true" class="btn btn-primary">Submit</button>';
+                }
+                ?>
             </form>
         </div>
         <form >
         <input type="hidden" name="id" value="<?php echo $id; ?>">
-          <button type="submit" name="delete" value="true" class="btn btn-primary">Delete Photo</button>
+                        <?php
+
+						if ($res['OWNER_NAME'] == $user_name ) {
+                	 echo '<button type="submit" name="delete" value="true" class="btn btn-primary">Delete Photo</button>';
+                	 oci_free_statement($stmt);
+                }
+         else if ($_SESSION['admin']) {
+                	 echo '<button type="submit" name="delete" value="true" class="btn btn-primary">Submit</button>';
+                }
+                oci_close($conn);
+                ?>
         </form>
         <br>
 

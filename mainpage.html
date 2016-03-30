@@ -24,15 +24,11 @@
                 <ul>
                     <li><a href="mainpage.html">HOME</a></li>
                     <li><a href="profilepage.php">PROFILE</a></li>
-                    <li><a href="search.html">SEARCH</a></li>
-                    <li><a href="documentation/documentation_sample.html">HELP</a></li>
-                    <li><a href="new_index.html">LOGOUT</a></li>
+                   <li><a href="documentation/documentation_sample.html">HELP</a></li>
+                    <li><a href="logout.php">LOGOUT</a></li>
                 </ul>
             </div>
-            <div id="search_form">
-                <form action="search.php" method="get"><input name="s" type="text" size="9" maxlength="30">
-                </form>
-            </div>
+
         </div>
 
 
@@ -58,10 +54,10 @@
                 <h3>GALLERY</h3></div>
             <div id="up_der">
                 <form id="gform" action="thumb.php" method="get" name="jumpto">
-                    <select name="c" onchange="javascript: fivethumb(this.value);">
-                    <option value="0">Frequent</option>
+                    <select name="c" onchange="javascript: fivethumbs(this.value);">
                     <option value="1">Most Recent</option>
                     <option value="2">Oldest</option>
+                    <option value="3">Top Five</option>
                 </select></form>
             </div>
         </div>
@@ -83,7 +79,25 @@
                 xmlhttp.open("GET", thumb, true);
                 xmlhttp.send();
             };
-            fivethumb("main=true");
+            fivethumb("main=true");            
+            function fivethumbs(str) {
+                $("#chickenbutt").html("");
+                var xmlhttp = new XMLHttpRequest();
+                xmlhttp.onreadystatechange = function() {
+                    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                        var txt = xmlhttp.responseText;
+                        $("#chickenbutt").html(txt);
+                    }
+                };
+                var thumb = "thumb.php";
+                if (location.search) thumb += location.search + "&option=" + str;
+                else {
+                    thumb += "?option=" + str;
+                }
+                xmlhttp.open("GET", thumb, true);
+                xmlhttp.send();
+            };
+
             //popularity of an image is specified by the number of distinct users that have ever viewed the image
         </script>
 

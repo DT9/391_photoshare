@@ -64,19 +64,21 @@
                 </div>
                 <div id="nav">
                     <ul>
-                        <li><a href="mainpage.html">HOME</a></li>
-                        <li><a href="profilepage.php">PROFILE</a></li>
-                        <li><a href="search.html">SEARCH</a></li>
-                        <li><a href="new_index.html">LOGOUT</a></li>
+                    <li><a href="mainpage.html">HOME</a></li>
+                    <li><a href="profilepage.php">PROFILE</a></li>
+                   <li><a href="documentation/documentation_sample.html">HELP</a></li>
+                    <li><a href="logout.php">LOGOUT</a></li>
                     </ul>
                 </div>
                 <!--<div id="search_form"><form action="search.php" method="get"><input name="s" type="text" size="9" maxlength="30">-->
                     </form>
                 </div>           
-                </div>
-            
+
+
+
 
 <!----------------------- search form ------------------------------------- -->
+
 					 <form name="seach-form" method="post" action="search_page.php">
             	Search Gallery:
             	<p>
@@ -98,7 +100,7 @@
             	
            		 </form>
 			
-            
+      
             
             
               <div id="cuerpo">
@@ -106,7 +108,7 @@
 
                 <div id="profile-info"> 
                <h3> 
-       			<?php echo "Username: $username"; ?><br>
+                <?php echo "Username: $username"; ?><br>
                 <?php echo "First name: $firstname"; ?> <br>
                 <?php echo "Last name: $lastname"; ?>   <br>         
                 <?php echo "Address: $address"; ?>  <br>             
@@ -128,6 +130,19 @@
                         </ul>
                     </div>
                     
+
+						<div id="nav">
+                 <ul>
+                     <li><a href="javascript:void(0);"
+                         NAME="My Window Name"  title=" My title here "
+                         onClick=window.open("manageGroup.php","Ratting","width=550,height=700,0,status=0,scrollbars=1");>--Manage Groups--</a></li>
+                          
+                 </ul>
+           		 </div>                    
+                    
+                    
+                    
+                    <div id="up_der"><form id="gform" action="/search.html/" method="get" name="jumpto"><select name="c" onchange="javascript: submit();"><option value="0">Frequent</option><option value="1">Most Recent</option><option value="2">Oldest</option></select></form></div>
                 </div>           
       
                 
@@ -159,6 +174,9 @@
             //popularity of an image is specified by the number of distinct users that have ever viewed the image
         </script>  
                 
+
+                </div>
+            
                 <div id="pie">
                     
                     <div id="pie_l">

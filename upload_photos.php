@@ -106,7 +106,7 @@ for($i=0; $i<count($_FILES['image']['name']); $i++) {
     $lobimage  = oci_new_descriptor($conn, OCI_D_LOB);
 
     //used to save blob
-    $uniqueid = uniqid();
+    $uniqueid =rand();;
 
     $stmt = oci_parse($conn, 'insert into images (photo_id,owner_name,permitted,subject,place,timing,description,thumbnail,photo) values 
     (:php_id, :owner_name, :permitted, :tags, :location, TO_DATE( :time, \'mm/dd/yyyy\'), :notes, EMPTY_BLOB(), EMPTY_BLOB()) returning thumbnail, photo into :thumbnail, :photo');
@@ -171,5 +171,5 @@ for($i=0; $i<count($_FILES['image']['name']); $i++) {
  
       
       oci_close($conn);
-      echo '<center><form method="post" action ="uploadwindow.html"><input type="submit" name="submit" value="continue" /> </form></center>';
+      echo '<center><form method="post" action ="uploadwindow.php"><input type="submit" name="submit" value="continue" /> </form></center>';
 ?>

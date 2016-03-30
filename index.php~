@@ -1,16 +1,15 @@
 <?php
 include("connection_database.php");
 ?>
-<html>
-    <body>
+
        <?php
-        session_start();
+        
         if (isset ($_POST['validate'])){
             //get the input
             $user=$_POST['username'];
             $pswd=$_POST['password'];
-            //if($ccid==''||$name==''){echo 'error';}
-		 //$_SESSION['user-name']=$user;
+            //if($user==''||$pswd==''){echo 'error';}
+			
 	    ini_set('display_errors', 1);
 	    error_reporting(E_ALL);
 	    
@@ -21,41 +20,36 @@ include("connection_database.php");
     		trigger_error(htmlentities($e['message'], ENT_QUOTES), E_USER_ERROR);
 	    }
  	///////////////////////////////////////////////////////////////////////////////////
- 	//checking if username in system 
+ 	//checking if username and password in system 
  		 $sql='select count(*) from Users where user_name=\''.$user.'\' and password=\''.$pswd.'\'';
- 		 //$sql='select * from Student;';	          
+ 		 //$sql='select count(*) from Users where user_name=\''.$user.'\'';
+ 		          
 	    echo $sql;
 	    //Prepare sql using conn and returns the statement identifier
 	    $stid = oci_parse($conn, $sql);
 	    
 	    //Execute a statement returned from oci_parse()
 	    $res=oci_execute($stid);
-	    
-	    while ($row=oci_fetch_array($stid,OCI_BOTH)){$r= $row[0];}
+	    $r='1';
+	    while ($row=oci_fetch_array($stid,OCI_BOTH)){$r= $row[1];}
 	    //$row=oci_fetch_array($stid,OCI_BOTH)
+	    //echo $r;
 	    oci_free_statement($stid);
 	    oci_close($conn);
-      	
-
+	    echo "r is $r";
+      
 	    $result=FALSE;
-	    if ($r[0]=="0"){ $result=TRUE;}
+	    if ($r=='0'){ $result=TRUE;}
 	    echo $result;
-	    
 	    if ($result){
-	    	header("Location: ./new_index.html");
-		 	//echo "error";	    
+	    	header("location:http://consort.cs.ualberta.ca/~jianle/database_site/391_photoshare/new_index.html");
+		 	echo "error";	    
 	    	exit;
 	    }
-	    else{
-	    	if ($user == "admin"){
-	    	$_SESSION['admin'] = "admin";
-	    }
-		 $_SESSION['user-name']="$user";	    
-	    header("Location: ./mainpage.html");
 	    
 	    echo "good good";
-	    }
 	    
+	    header("Location: mainpage.html")
 	    
 	    //if error, retrieve the error using the oci_error() function & output an error message
 /*
@@ -68,8 +62,5 @@ include("connection_database.php");
 	    }
 */ 
 	    // Free the statement identifier when closing the connection
-
-	}
+	
 	?>
-    </body>
-</html>

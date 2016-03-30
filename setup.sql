@@ -85,7 +85,7 @@ CREATE TABLE group_lists (
 );
 
 CREATE TABLE images (
-   photo_id    varchar(50),
+   photo_id    int,
    owner_name  varchar(24),
    permitted   int,
    subject     varchar(128),
@@ -100,10 +100,8 @@ CREATE TABLE images (
 );
 CREATE TABLE photo_count (
    user_name varchar(24),
-   photo_id varchar(50),
-   PRIMARY KEY(user_name,photo_id),
-   FOREIGN KEY(photo_id) REFERENCES images,
-   FOREIGN KEY(user_name) REFERENCES users
+   photo_id int,
+   PRIMARY KEY(user_name,photo_id)
 );
 
 --MAKE DUH DATA CUBE

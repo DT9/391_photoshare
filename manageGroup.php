@@ -39,7 +39,6 @@
     	<div id="cabecera">
     		<div id="logo">
                     
-         	<h1>Upload Your Image</h1>
       	</div>
     	</div>
     
