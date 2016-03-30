@@ -22,7 +22,8 @@
 	$profile = $_GET['profile'];
 	$mainpage = $_GET['main'];
 	$admin = $_SESSION['admin'];
-
+	$option = $_GET['option'];
+	
 	if ($admin) {
 		$query = "SELECT photo_id FROM images";	
 	}
@@ -30,13 +31,26 @@
 		$query = "select photo_id from images where owner_name = '$user'";
 		//$query = "select photo_id from images where permitted = '1' or owner_name = '$user' or permitted in (select group_id from group_lists where friend_id = '$user' union select group_id from groups where user_name = '$user' )";
 	}
-	elseif ($mainpage) {
-		//$query = "select photo_id from images where permitted = '1' or owner_name = '$user' or permitted in (select group_id from group_lists where friend_id = '$user' union select group_id from groups where user_name = '$user' )";
+	elseif ($option == "1") {
+		//recent
+		$query = "SELECT photo_id FROM images";	
+				//$query = "select photo_id from images where permitted = '1' or owner_name = '$user' or permitted in (select group_id from group_lists where friend_id = '$user' union select group_id from groups where user_name = '$user' )";
+	}
+	elseif ($option == "2") {
+		//oldest
+
+		$query = "SELECT photo_id FROM images";	
+				//$query = "select photo_id from images where permitted = '1' or owner_name = '$user' or permitted in (select group_id from group_lists where friend_id = '$user' union select group_id from groups where user_name = '$user' )";
+	}
+	elseif ($option == "3") {
 		//top 5 popular images
+
 		$query = "select photo_id, count(photo_id) as visits from photo_count where ROWNUM <=5 group by photo_id order by visits desc";
+				//$query = "select photo_id from images where permitted = '1' or owner_name = '$user' or permitted in (select group_id from group_lists where friend_id = '$user' union select group_id from groups where user_name = '$user' )";
 	}
 	else {
-		$query = "select photo_id from images where permitted = '1' or owner_name = '$user' or permitted in (select group_id from group_lists where friend_id = '$user' union select group_id from groups where user_name = '$user' )";
+		$query = "select photo_id from images where permitted = '1' or owner_name = '$user' or permitted in 
+		(select group_id from group_lists where friend_id = '$user' union select group_id from groups where user_name = '$user' )";
 	}
 	function imagequery($query,$conn) {
 		$stmt = oci_parse ($conn, $query);

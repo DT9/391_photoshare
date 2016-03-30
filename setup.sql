@@ -101,9 +101,7 @@ CREATE TABLE images (
 CREATE TABLE photo_count (
    user_name varchar(24),
    photo_id int,
-   PRIMARY KEY(user_name,photo_id),
-   FOREIGN KEY(photo_id) REFERENCES images,
-   FOREIGN KEY(user_name) REFERENCES users
+   PRIMARY KEY(user_name,photo_id)
 );
 
 --MAKE DUH DATA CUBE

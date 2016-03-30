@@ -1,10 +1,10 @@
 
-SQL*Loader: Release 12.1.0.2.0 - Production on Tue Mar 29 15:14:47 2016
+SQL*Loader: Release 12.1.0.2.0 - Production on Wed Mar 30 16:42:02 2016
 
 Copyright (c) 1982, 2014, Oracle and/or its affiliates.  All rights reserved.
 
 Control File:   lob.ctl
-Data File:      lob.txts
+Data File:      lob.txt
   Bad File:     lob.bad
   Discard File:  none specified
  
@@ -40,7 +40,7 @@ PHOTO                             DERIVED     *  EOF      CHARACTER
 
 
 Table IMAGES:
-  16 Rows successfully loaded.
+  6 Rows successfully loaded.
   0 Rows not loaded due to data errors.
   0 Rows not loaded because all WHEN clauses were failed.
   0 Rows not loaded because all fields were null.
@@ -50,12 +50,12 @@ Space allocated for bind array:                 180608 bytes(64 rows)
 Read   buffer bytes: 1048576
 
 Total logical records skipped:          0
-Total logical records read:            16
+Total logical records read:             6
 Total logical records rejected:         0
 Total logical records discarded:        0
 
-Run began on Tue Mar 29 15:14:47 2016
-Run ended on Tue Mar 29 15:14:48 2016
+Run began on Wed Mar 30 16:42:02 2016
+Run ended on Wed Mar 30 16:42:02 2016
 
-Elapsed time was:     00:00:00.28
-CPU time was:         00:00:00.06
+Elapsed time was:     00:00:00.14
+CPU time was:         00:00:00.03
