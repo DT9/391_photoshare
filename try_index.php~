@@ -35,16 +35,21 @@ include("connection_database.php");
 	    //$row=oci_fetch_array($stid,OCI_BOTH)
 	    oci_free_statement($stid);
 	    oci_close($conn);
-      
+      	
+
 	    $result=FALSE;
 	    if ($r[0]=="0"){ $result=TRUE;}
 	    echo $result;
+	    
 	    if ($result){
 	    	header("Location: ./new_index.html");
 		 	//echo "error";	    
 	    	exit;
 	    }
 	    else{
+	    	if ($user == "admin"){
+	    	$_SESSION['admin'] = "admin";
+	    }
 		 $_SESSION['user-name']="$user";	    
 	    header("Location: ./mainpage.html");
 	    
