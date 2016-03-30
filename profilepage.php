@@ -64,36 +64,37 @@
                 </div>
                 <div id="nav">
                     <ul>
-                        <li><a href="mainpage.html">HOME</a></li>
-                        <li><a href="profilepage.php">PROFILE</a></li>
-                        <li><a href="search.html">SEARCH</a></li>
-                        <li><a href="new_index.html">LOGOUT</a></li>
+                    <li><a href="mainpage.html">HOME</a></li>
+                    <li><a href="profilepage.php">PROFILE</a></li>
+                   <li><a href="documentation/documentation_sample.html">HELP</a></li>
+                    <li><a href="logout.php">LOGOUT</a></li>
                     </ul>
                 </div>
                 <!--<div id="search_form"><form action="search.php" method="get"><input name="s" type="text" size="9" maxlength="30">-->
                     </form>
                 </div>           
-                </div>
-            
+
+
+
 
 <!----------------------- search form ------------------------------------- -->
-					 <form name="seach-form" method="post" action="search_page.php">
-            	Search Gallery:
-            	<p>
-            	<!-- search by date -->
-            	<label for="from">From</label>
-					<input type="text" id="from" name="from">
-					<label for="to">to</label>
-					<input type="text" id="to" name="to">
-					</p>
-            	
-            	<p>
-            	<!-- search by subject -->
-            	Enter Key Word:<input type ="search" id = "keysearch" name= "keysearch">
-            	<input type="submit"></p>
-            	
-           		 </form>
-			
+                     <form name="seach-form" method="post" action="search_page.php">
+                Search Gallery:
+                <p>
+                <!-- search by date -->
+                <label for="from">From</label>
+                    <input type="text" id="from" name="from">
+                    <label for="to">to</label>
+                    <input type="text" id="to" name="to">
+                    </p>
+                
+                <p>
+                <!-- search by subject -->
+                Enter Key Word:<input type ="search" id = "keysearch" name= "keysearch">
+                <input type="submit"></p>
+                
+                 </form>
+            
             
             
             
@@ -102,7 +103,7 @@
 
                 <div id="profile-info"> 
                <h3> 
-       			<?php echo "Username: $username"; ?><br>
+                <?php echo "Username: $username"; ?><br>
                 <?php echo "First name: $firstname"; ?> <br>
                 <?php echo "Last name: $lastname"; ?>   <br>         
                 <?php echo "Address: $address"; ?>  <br>             
@@ -156,6 +157,9 @@
             //popularity of an image is specified by the number of distinct users that have ever viewed the image
         </script>  
                 
+
+                </div>
+            
                 <div id="pie">
                     
                     <div id="pie_l">
