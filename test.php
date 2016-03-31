@@ -1,17 +1,12 @@
 <?php 
-	session_start();
-	include("connection_database.php");
-	$conn=connect();
-	$query = "SELECT * FROM images";	
+// If we know we don't need to change anything in the
+// session, we can just read and close rightaway to avoid
+// locking the session file and blocking other pages
+# then at the very end of the script:
+# session debugging
+    session_start();
 
-	$stmt = oci_parse ($conn, $query);
-	oci_execute($stmt);
-	while ($arr = oci_fetch_array($stmt, OCI_ASSOC)){
-		$id = $arr['PHOTO_ID'];
-		echo '<img src="pullimage.php?id='.$id.'&type=thumbnail" width=100 height=100 />';
-		//echo '<a href="display.php?id='.$id.'"><img src="pullimage.php?id='.$id.'&type=thumbnail" width="175" height="200" /></a>';
-	}	
-	
+    session_destroy();
 
-
+print_r($_SESSION);
 ?>

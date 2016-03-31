@@ -13,8 +13,8 @@
           $d = $_POST['email'];
           $e = $_POST['phone'];
           if ($up) {
-            $sql = "update persons set first_name = '$a', last_name = '$b', address = '$c', email = '$d',phone  = '$e' 
-            where user_name = '$user' ";
+            $sql = 'update persons set first_name = \''.$a.'\', last_name = \''.$b.'\', address = \''.$c.'\', email = \''.$d.'\',phone  = \''.$e.'\' 
+            where user_name = \''.$user.'\'';
             $stid = oci_parse($conn, $sql);        
             //Execute a statement returned from oci_parse()
             $res=oci_execute($stid);
@@ -125,11 +125,11 @@
                 <div id="profile-info"> 
                <h3> <form method="post">
                 <?php echo "Username: $username"; ?><br>
-                <?php echo "First name: <input name='first'>$firstname</input>"; ?> <br>
-                <?php echo "Last name: <input name='last'>$lastname</input>"; ?>   <br>         
-                <?php echo "Address: <input name='addr'>$address</input>"; ?>  <br>             
-                <?php echo "Email: <input name='email'>$email</input>"; ?>  <br> 
-                <?php echo "Phone: <input name='phone'>$phone</input>"; ?>   <br> 
+                <?php echo "First name: <input name='first' value='$firstname'></input>"; ?> <br>
+                <?php echo "Last name: <input name='last' value='$lastname'></input>"; ?>   <br>         
+                <?php echo "Address: <input name='addr' value='$address'></input>"; ?>  <br>             
+                <?php echo "Email: <input name='email' value='$email'></input>"; ?>  <br> 
+                <?php echo "Phone: <input name='phone' value='$phone'></input>"; ?>   <br> 
                 <input type="submit" name="update" value="Update Info"> </form> <br>
                 <?php echo "<a href='admin.php'>Admin</a>" ?>   <br> 
                 </h3>           
