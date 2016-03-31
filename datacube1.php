@@ -39,16 +39,16 @@ else {
 }
 //Date
 if ($date == "Year") {
-	$s .= ' EXTRACT(YEAR from i.timing) as tyear,';
-	$g .= ' EXTRACT(YEAR from i.timing) ,';
+	$s .= ' to_char(i.timing,\'yyyy\') as tyear,';
+	$g .= ' to_char(i.timing,\'yyyy\') ,';
 }
 elseif ($date == "Month") {
-	$s .= ' to_char(i.timing,\'MON\') as tmonth,';
-	$g .= ' to_char(i.timing,\'MON\') ,';	
+	$s .= ' to_char(i.timing,\'yyyy-MON\') as tmonth,';
+	$g .= ' to_char(i.timing,\'yyyy-MON\') ,';	
 }
 elseif ($date == "Week") {
-	$s .= ' to_char(i.timing,\'IW\') as tweek,';
-	$g .= ' to_char(i.timing,\'IW\') ,';	
+	$s .= ' to_char(i.timing,\'yyyy-MON-IW\') as tweek,';
+	$g .= ' to_char(i.timing,\'yyyy-MON-IW\') ,';	
 }
 else {
 
@@ -63,7 +63,6 @@ $stp.= " from images i ";
 $stp.= $w;
 $stp.= $g;
 
-print_r($stp."<br>");
 
 $stid = oci_parse($conn,$stp);
 $res = oci_execute($stid);
@@ -93,7 +92,7 @@ while (($row = oci_fetch_array($stid, OCI_ASSOC))) {
 		echo "<td>".$row["TMONTH"]."</td>";
 	}
 	if (isset($row["TWEEK"])) {
-		echo "<td>".$row["TWEEK"]."</td>";
+		echo "<td>".$row["TWEEK"]."W</td>";
 	}
 	if ($tdate == "None" ) {
 		echo "<td> NONE </td>";
@@ -104,4 +103,7 @@ while (($row = oci_fetch_array($stid, OCI_ASSOC))) {
 
 }
 echo "</TABLE>";
+
+print_r($stp);
+
 ?>
