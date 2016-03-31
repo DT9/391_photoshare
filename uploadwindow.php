@@ -60,6 +60,7 @@ function getres($sql,$conn) {
             	<p>Tag:<input type="search" id="tag" name="tag"placeholder="Split tags with spacebar"></p>
             	<p>Privacy:</p>
                           <select name="privacy" class="form-control">
+                          
                                   <?php
                                       getres("select s.group_id, s.group_name from group_lists g,groups s where g.friend_id = '".$user."' and s.group_id = g.group_id union select group_id, group_name from groups where group_id = 1 or group_id = 2 or user_name = '$user' ",$conn);
 
