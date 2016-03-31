@@ -1,5 +1,16 @@
 
 <?php
+function rebuild($conn) {
+$a = "alter index SUBJECT_INDEX rebuild ";
+$b = "alter index DESC_INDEX rebuild ";
+$c = "alter index PLACE_INDEX rebuild ";
+$stid = oci_parse($conn, $a);	    
+$res=oci_execute($stid);
+$stid = oci_parse($conn, $b);	    
+$res=oci_execute($stid);
+$stid = oci_parse($conn, $c);	    
+$res=oci_execute($stid);
+}
 //GG
 //http://stackoverflow.com/questions/24895170/multiple-image-upload-php-form-with-one-input
 
