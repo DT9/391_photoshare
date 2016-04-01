@@ -62,7 +62,7 @@ elseif (!empty($arr)){
 			$sql='select photo_id from images where 
 				(CONTAINS(subject, \''.$arr.'\', 1)>0 
 				or CONTAINS(place, \''.$arr.'\', 2)>0
-				or CONTAINS(description, \''.$arr.'\', 3)>0) and timing between \''.$from.'\' and \''.$to.'\' order by timing desc';}
+				or CONTAINS(description, \''.$arr.'\', 3)>0) and timing between \''.$from.'\' and \''.$to.'\' order by timing asc';}
 		else{		
 			$sql='select photo_id from images where 
 				(CONTAINS(subject, \''.$arr.'\', 1)>0 
