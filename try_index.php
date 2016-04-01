@@ -51,7 +51,7 @@ include("connection_database.php");
 	    	$_SESSION['admin'] = "admin";
 	    }
 		 $_SESSION['user-name']="$user";	    
-	    header("Location: ./mainpage.html");
+	    header("Location: ./mainpage.php");
 	    
 	    echo "good good";
 	    }

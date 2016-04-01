@@ -8,7 +8,10 @@
     <link rel="stylesheet" type="text/css" href="lightview.css">
     <script src="https://code.jquery.com/jquery-2.2.2.min.js"></script>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <style></style>
+    <style></style>  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 
 </head>
 
@@ -18,11 +21,11 @@
         <div id="cabecera">
             <div id="logo">
 
-                <h1><a id="top" href="mainpage.html">PHOTOSHARE</a></h1>
+                <h1><a id="top" href="mainpage.php">PHOTOSHARE</a></h1>
             </div>
             <div id="nav">
                 <ul>
-                    <li><a href="mainpage.html">HOME</a></li>
+                    <li><a href="mainpage.php">HOME</a></li>
                     <li><a href="profilepage.php">PROFILE</a></li>
                    <li><a href="documentation/documentation_sample.html">HELP</a></li>
                     <li><a href="logout.php">LOGOUT</a></li>
@@ -43,7 +46,10 @@
             	
 
             	<p>
+
             	Enter Key Word:<input type ="search" id = "keysearch" name= "keysearch">
+                <select name="c"><option value="0">Frequent</option><option value="1">Most Recent</option><option value="2">Oldest</option></select>
+                <br>
             	<input type="submit"></p>
             	
      </form>
@@ -55,7 +61,6 @@
             <div id="up_der">
                 <form id="gform" action="thumb.php" method="get" name="jumpto">
                     <select name="c" onchange="javascript: fivethumbs(this.value);">
-                    <option value="0">Frequent</option>
                     <option value="1">Most Recent</option>
                     <option value="2">Oldest</option>
                     <option value="3">Top Five</option>
@@ -98,7 +103,8 @@
                 xmlhttp.open("GET", thumb, true);
                 xmlhttp.send();
             };
-
+            $('#from').datepicker({ dateFormat: 'dd-M-y' });
+            $('#to').datepicker({ dateFormat: 'dd-M-y' });
             //popularity of an image is specified by the number of distinct users that have ever viewed the image
         </script>
 
@@ -116,7 +122,7 @@
 
             <div id="pie_l">
                 <ul>
-                    <li><a href="mainpage.html">HOME</a></li>
+                    <li><a href="mainpage.php">HOME</a></li>
                 </ul>
             </div>
             <div id="pie_r">

@@ -1,5 +1,16 @@
 
 <?php
+function rebuild($conn) {
+$a = "alter index SUBJECT_INDEX rebuild ";
+$b = "alter index DESC_INDEX rebuild ";
+$c = "alter index PLACE_INDEX rebuild ";
+$stid = oci_parse($conn, $a);	    
+$res=oci_execute($stid);
+$stid = oci_parse($conn, $b);	    
+$res=oci_execute($stid);
+$stid = oci_parse($conn, $c);	    
+$res=oci_execute($stid);
+}
 //GG
 //http://stackoverflow.com/questions/24895170/multiple-image-upload-php-form-with-one-input
 
@@ -16,8 +27,9 @@ $orderbytime= $_REQUEST['c'];
 //get single word for keysearch
 echo $keysearch;
 $arr=str_replace(' ', '&', $keysearch);
-//$arr = explode(' ', trim($keysearch));
-//$arrfrom = explode(' ', trim($from));
+
+
+
 
 echo "from date = $from";
 echo "to date = $to";
@@ -25,15 +37,14 @@ echo "Keyword = $arr ";
 echo "orderbytime is = $orderbytime ";
 
 
-
+$querie_true='True'; 
 
 //if all empty, no search
 if (empty($arr)&&empty($from)&&empty($to)){
 	echo "empty";
-<html>
-<INPUT TYPE="button" VALUE="Back" onClick="history.go(-1);">
+	$querie_true='False'; 
 
-</html>
+
 	//redirect back
 	}
 	
@@ -93,22 +104,22 @@ elseif (!empty($arr)){
 		echo "subject and to only";	
 		if ($orderbytime=='1'){
 			$sql='select photo_id from images where 
-				CONTAINS(subject, \''.$arr.'\', 1)>0
+				(CONTAINS(subject, \''.$arr.'\', 1)>0
 				or CONTAINS(place, \''.$arr.'\', 2)>0
-				or CONTAINS(description, \''.$arr.'\', 3)>0 
+				or CONTAINS(description, \''.$arr.'\', 3)>0) 
 				and timing between (select min(timing) from images) and \''.$to.'\' order by timing desc';
 				}		
 		elseif ($orderbytime=='2'){$sql='select photo_id from images where 
-				CONTAINS(subject, \''.$arr.'\', 1)>0
+				(CONTAINS(subject, \''.$arr.'\', 1)>0
 				or CONTAINS(place, \''.$arr.'\', 2)>0
-				or CONTAINS(description, \''.$arr.'\', 3)>0 
+				or CONTAINS(description, \''.$arr.'\', 3)>0) 
 				and timing between (select min(timing) from images) and \''.$to.'\' order by timing asc';
 				}
 		else{
 			$sql='select photo_id from images where 
-				CONTAINS(subject, \''.$arr.'\', 1)>0
+				(CONTAINS(subject, \''.$arr.'\', 1)>0
 				or CONTAINS(place, \''.$arr.'\', 2)>0
-				or CONTAINS(description, \''.$arr.'\', 3)>0 
+				or CONTAINS(description, \''.$arr.'\', 3)>0) 
 				and timing between (select min(timing) from images) and \''.$to.'\'
 				order by (rank() over (order by(6*score(1)+3*score(2)+score(3)) desc))';
 				}
@@ -118,19 +129,19 @@ elseif (!empty($arr)){
 	else{ 
 		if ($orderbytime=='1'){
 			$sql='select photo_id from images where 
-				CONTAINS(subject, \''.$arr.'\', 1)>0
+				(CONTAINS(subject, \''.$arr.'\', 1)>0
 				or CONTAINS(place, \''.$arr.'\', 2)>0
-				or CONTAINS(description, \''.$arr.'\', 3)>0 and timing between \''.$from.'\' and sysdate order by timing desc';}
+				or CONTAINS(description, \''.$arr.'\', 3)>0) and timing between \''.$from.'\' and sysdate order by timing desc';}
 		elseif($orderbytime=='2'){
 			$sql='select photo_id from images where 
-				CONTAINS(subject, \''.$arr.'\', 1)>0
+				(CONTAINS(subject, \''.$arr.'\', 1)>0
 				or CONTAINS(place, \''.$arr.'\', 2)>0
-				or CONTAINS(description, \''.$arr.'\', 3)>0 and timing between \''.$from.'\' and sysdate order by timing asc';}
+				or CONTAINS(description, \''.$arr.'\', 3)>0) and timing between \''.$from.'\' and sysdate order by timing asc';}
 		else{
 			$sql='select photo_id from images where 
-				CONTAINS(subject, \''.$arr.'\', 1)>0
+				(CONTAINS(subject, \''.$arr.'\', 1)>0
 				or CONTAINS(place, \''.$arr.'\', 2)>0
-				or CONTAINS(description, \''.$arr.'\', 3)>0 and timing between \''.$from.'\' and sysdate
+				or CONTAINS(description, \''.$arr.'\', 3)>0) and timing between \''.$from.'\' and sysdate
 				order by (rank() over (order by(6*score(1)+3*score(2)+score(3)) desc))';}	
 		echo "subject and from only";
 	}
@@ -181,7 +192,8 @@ echo $sql;
 echo "number of pics: $sql1";
 
      $conn = connect();   
-
+     rebuild($conn);
+if ($querie_true=='True'){
 if (!$conn) {
     $e = oci_error();
     trigger_error(htmlentities($e['message'], ENT_QUOTES), E_USER_ERROR);
@@ -201,10 +213,10 @@ if (!$conn) {
 	    
 	    }
 	    
-	    
+	    rebuild($conn);
 	    oci_free_statement($stid);
 	    oci_close($conn);
-
+}
 
 ?>
 

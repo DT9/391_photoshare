@@ -5,13 +5,26 @@
 			include("connection_database.php");
 			session_start();
 	      $conn=connect();
-	      
+           $user=$_SESSION['user-name'];
+          $up = $_POST['update'];
+          $a = $_POST['first'];
+          $b = $_POST['last'];
+          $c = $_POST['addr'];
+          $d = $_POST['email'];
+          $e = $_POST['phone'];
+          if ($up) {
+            $sql = 'update persons set first_name = \''.$a.'\', last_name = \''.$b.'\', address = \''.$c.'\', email = \''.$d.'\',phone  = \''.$e.'\' 
+            where user_name = \''.$user.'\'';
+            $stid = oci_parse($conn, $sql);        
+            //Execute a statement returned from oci_parse()
+            $res=oci_execute($stid);
+
+          }
 	      
 	      if (!$conn) {
     		$e = oci_error();
     		trigger_error(htmlentities($e['message'], ENT_QUOTES), E_USER_ERROR);
 	    }
-			$user=$_SESSION['user-name'];
 			//echo "hello $user";
 			
 			$sql='select * from Persons where user_name=\''.$user.'\'';
@@ -43,6 +56,9 @@
 
             <link rel="stylesheet" type="text/css" href="st1.css">    <link rel="stylesheet" type="text/css" href="lightview.css">
                         <script src="https://code.jquery.com/jquery-2.2.2.min.js"></script>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
                     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
                 <style></style>
@@ -60,11 +76,11 @@
             <div id="cabecera">
                 <div id="logo">
                     
-                    <h1><a id="top" href="mainpage.html">PHOTOSHARE</a></h1>
+                    <h1><a id="top" href="mainpage.php">PHOTOSHARE</a></h1>
                 </div>
                 <div id="nav">
                     <ul>
-                    <li><a href="mainpage.html">HOME</a></li>
+                    <li><a href="mainpage.php">HOME</a></li>
                     <li><a href="profilepage.php">PROFILE</a></li>
                    <li><a href="documentation/documentation_sample.html">HELP</a></li>
                     <li><a href="logout.php">LOGOUT</a></li>
@@ -87,7 +103,7 @@
 					<input type="text" id="from" name="from">
 					<label for="to">to (DD-MM-YY)</label>
 					<input type="text" id="to" name="to">
-					
+					<br>
             	<!-- search by subject -->
             	Enter Key Word:<input type ="search" id = "keysearch" name= "keysearch">
             	
@@ -107,13 +123,15 @@
                 <div id="cuerpo">
 
                 <div id="profile-info"> 
-               <h3> 
+               <h3> <form method="post">
                 <?php echo "Username: $username"; ?><br>
-                <?php echo "First name: $firstname"; ?> <br>
-                <?php echo "Last name: $lastname"; ?>   <br>         
-                <?php echo "Address: $address"; ?>  <br>             
-                <?php echo "Email: $email"; ?>  <br> 
-                <?php echo "Phone: $phone"; ?>   <br> 
+                <?php echo "First name: <input name='first' value='$firstname'></input>"; ?> <br>
+                <?php echo "Last name: <input name='last' value='$lastname'></input>"; ?>   <br>         
+                <?php echo "Address: <input name='addr' value='$address'></input>"; ?>  <br>             
+                <?php echo "Email: <input name='email' value='$email'></input>"; ?>  <br> 
+                <?php echo "Phone: <input name='phone' value='$phone'></input>"; ?>   <br> 
+                <input type="submit" name="update" value="Update Info"> </form> <br>
+                <?php echo "<a href='admin.php'>Admin</a>" ?>   <br> 
                 </h3>           
                  </div>
                 
@@ -131,14 +149,22 @@
                     </div>
                     
 
-						<div id="nav">
+				<div id="nav">
                  <ul>
                      <li><a href="javascript:void(0);"
                          NAME="My Window Name"  title=" My title here "
                          onClick=window.open("manageGroup.php","Ratting","width=550,height=700,0,status=0,scrollbars=1");>--Manage Groups--</a></li>
                           
                  </ul>
-           		 </div>                    
+
+                 <ul
+                            <li><a href="javascript:void(0);"
+                                NAME="My Window Name"  title=" My title here "
+                                onClick=window.open("viewgroups.php","Ratting","width=550,height=700,0,status=0,scrollbars=1");>--VIEW GROUPS--</a></li>
+                            
+                        </ul>
+           		 </div>  
+          
                     
                     
 
@@ -171,6 +197,8 @@
             };
             fivethumb("profile=true");
             //popularity of an image is specified by the number of distinct users that have ever viewed the image
+            $('#from').datepicker({ dateFormat: 'dd-M-y' });
+            $('#to').datepicker({ dateFormat: 'dd-M-y' });
         </script>  
                 
 
@@ -180,7 +208,7 @@
                     
                     <div id="pie_l">
                         <ul>
-                            <li><a href="mainpage.html">HOME</a></li>
+                            <li><a href="mainpage.php">HOME</a></li>
                         </ul>
                     </div>
                     <div id="pie_r">

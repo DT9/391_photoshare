@@ -70,7 +70,8 @@ include("connection_database.php");
 	    
 	    }
 	    //oci_close($conn);
-	    
+    	header("Location: ./new_index.html");
+
 	    echo "good good";
 	    
 	    
