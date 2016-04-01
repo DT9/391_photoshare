@@ -29,5 +29,7 @@ INSERT INTO group_lists VALUES (4, 'donald', TO_DATE('12/01/2011 12:12:12', 'DD/
 INSERT INTO group_lists VALUES (5, 'nathaniel', TO_DATE('01/01/2011 12:12:12', 'DD/MM/YYYY hh24:mi:ss'),'notice me senpai5');
 
 
+
+
 COMMIT;
 quit;

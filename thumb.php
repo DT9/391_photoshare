@@ -47,7 +47,7 @@
 	}
 	else {
 		$query = "select photo_id from images where permitted = '1' or owner_name = '$user' or permitted in 
-		(select group_id from group_lists where friend_id = '$user' union select group_id from groups where user_name = '$user' )";
+			(select group_id from group_lists where friend_id = '$user' union select group_id from groups where user_name = '$user' )";
 	}
 	function imagequery($query,$conn) {
 		$stmt = oci_parse ($conn, $query);
