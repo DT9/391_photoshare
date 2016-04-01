@@ -149,14 +149,22 @@
                     </div>
                     
 
-						<div id="nav">
+				<div id="nav">
                  <ul>
                      <li><a href="javascript:void(0);"
                          NAME="My Window Name"  title=" My title here "
                          onClick=window.open("manageGroup.php","Ratting","width=550,height=700,0,status=0,scrollbars=1");>--Manage Groups--</a></li>
                           
                  </ul>
-           		 </div>                    
+
+                 <ul
+                            <li><a href="javascript:void(0);"
+                                NAME="My Window Name"  title=" My title here "
+                                onClick=window.open("viewgroups.php","Ratting","width=550,height=700,0,status=0,scrollbars=1");>--VIEW GROUPS--</a></li>
+                            
+                        </ul>
+           		 </div>  
+          
                     
                     
                     

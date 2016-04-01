@@ -26,9 +26,6 @@ $orderbytime= $_REQUEST['c'];
 //get single word for keysearch
 echo $keysearch;
 $arr=str_replace(' ', '&', $keysearch);
-//$arr = explode(' ', trim($keysearch));
-//$arrfrom = explode(' ', trim($from));
-
 
 echo "from date = $from";
 echo "to date = $to";
@@ -188,7 +185,7 @@ echo $sql;
 echo "number of pics: $sql1";
 
      $conn = connect();   
-
+     rebuild($conn);
 if (!$conn) {
     $e = oci_error();
     trigger_error(htmlentities($e['message'], ENT_QUOTES), E_USER_ERROR);

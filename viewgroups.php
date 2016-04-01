@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!DOCTYPE html>
 <!-- picture upload is from http://bootsnipp.com/snippets/featured/bootstrap-drag-and-drop-upload-->
     
     
@@ -45,103 +46,53 @@
             	
 					<div class="container-projects bg-primary">
         <div class="container">
-            <h1 id="projects" class="text-center">Create a group!</h1>
+            <h1 id="projects" class="text-center">View Your Group!</h1>
             <div class="row">
-                <form action="creategroup.php" method="post" enctype="multipart/form-data">
+                <form action="viewusers.php" method="post" enctype="multipart/form-data">
                     <div class="text-center">
-                        <input class="butt form-control" id="groupname" name="groupname" /> 
-                        <br><input type="submit" value="Create group!" id="selectedButton" color="black"/>
-                    </div>
-                </form>
-            </div>
-        </div>
-        <div class="clearfix hidden-xs" style="width:100%; height:50px;"></div>
-    </div>
-    
-    
-    
-    <div class="container-projects bg-success">
-        <div class="container">
-            <h1 id="projects" class="text-center">Add users to group!</h1>
-            <div class="row">
-                <form action="group_edit.php" method="post" enctype="multipart/form-data">
-                    <div class="text-center">
-                                            <label>Groups</label>
-                                            <select name="group" class="form-control">
-                                                <?php
-                                                    getres('select group_name from groups where user_name = \''.$username.'\'',$conn);
-                                                ?>
-                                            </select>                                               <div>
-                                            <label>Users</label>
-                                            <input id="noob" name="user" multiple="" class="form-control"></input>
-                                            Description
-                                            <input id="noob" name="desc" multiple="" class="form-control"></input>
-                                            <div>
-                        <br><input type="submit" value="Update group!" id="selectedButton" color="black"/>
-                    </div>
-                </form>
-            </div>
-        </div>
-        <div class="clearfix hidden-xs" style="width:100%; height:50px;"></div>
-    </div>
-    
-    
-	<div class="container-projects bg-success">
-        <div class="container">
-            <h1 id="projects" class="text-center"> Delete users from group!</h1>
-            <div class="row">
-                <form action="group_user_delete.php" method="post" enctype="multipart/form-data">
-                    <div class="text-center">
-                                            <label>Groups</label>
+                        <label>Groups</label>
                                             <select name="group" class="form-control">
                                                 <?php
                                                     getres('select group_name from groups where user_name = \''.$username.'\'',$conn);
                                                 ?>
                                             </select>                                               <div>
                                             <label>User</label>
-                                            <input id="noob" name="user" multiple="" class="form-control"></input>
+                                            
                                           
                                             <div>
-                        <br><input type="submit" value="Delete User" id="selectedButton" color="black"/>
-                    </div>
-                </form>
-            </div>
-        </div>
-        <div class="clearfix hidden-xs" style="width:100%; height:50px;"></div>
-    </div>    
-    
-    
-    
 
-                                            
-    
-    
-    
-    <div class="container-projects bg-warning">
-        <div class="container">
-            <h1 id="projects" class="text-center">Delete a group!</h1>
-            <h3><?php echo "username is: $username";?> <br></h3>
-            <div class="row">
-                <form action="deletegroup.php" method="post" enctype="multipart/form-data">
-                    <div class="text-center">
-                                            <label>Groups</label>
-                                            
-                                            <select name="group" class="form-control">
-                                                <?php
-                                                    getres('select group_name from groups where user_name = \''.$username.'\'',$conn);
-                                                ?>
-                                            </select>
-                                            
-   
-                                            
-                                            
-                                <br><input type="submit" value="Delete group!" id="selectedButton" color="black"/>
+                        <br><input type="submit" value="View Group!" id="selectedButton" color="black"/>
                     </div>
                 </form>
             </div>
         </div>
         <div class="clearfix hidden-xs" style="width:100%; height:50px;"></div>
     </div>
+    
+    
+    
+	<div class="container-projects bg-success">
+        <div class="container">
+            <h1 id="projects" class="text-center"> View Groups You Are In!</h1>
+            <div class="row">
+                <form action="viewusers.php" method="post" enctype="multipart/form-data">
+                    <div class="text-center">
+                                            <label>Groups</label>
+                                            <select name="group" class="form-control">
+                                                <?php
+                                                    getres('select group_name from groups g,group_lists l where g.user_name <> \''.$username.'\' and l.friend_id = \''.$username.'\' and g.group_id = l.group_id',$conn);
+                                                ?>
+                                            </select>                                               <div>
+                                            <label>User</label>
+                                          
+                                            <div>
+                        <br><input type="submit" value="View Group" id="selectedButton" color="black"/>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="clearfix hidden-xs" style="width:100%; height:50px;"></div>
+    </div>    
     
     		
         <center>
