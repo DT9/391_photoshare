@@ -94,7 +94,7 @@
             	
             	<!-- frequency ascending or descending order-->
             	<select name="c"><option value="0">Frequent</option><option value="1">Most Recent</option><option value="2">Oldest</option></select>
-					<br>					
+					<br>
 					<input type="submit">            	
             	</p>
             	
@@ -141,8 +141,7 @@
            		 </div>                    
                     
                     
-                    
-                    <div id="up_der"><form id="gform" action="/search.html/" method="get" name="jumpto"><select name="c" onchange="javascript: submit();"><option value="0">Frequent</option><option value="1">Most Recent</option><option value="2">Oldest</option></select></form></div>
+
                 </div>           
       
                 

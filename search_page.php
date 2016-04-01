@@ -7,6 +7,7 @@
 include("connection_database.php");
 include("scaleimage.php");
 echo "<center>Hello World!</center><br/>";
+session_start();
 
 $from = $_REQUEST['from'];
 $to = $_REQUEST['to'];
@@ -17,7 +18,6 @@ echo $keysearch;
 $arr=str_replace(' ', '&', $keysearch);
 //$arr = explode(' ', trim($keysearch));
 //$arrfrom = explode(' ', trim($from));
-
 
 echo "from date = $from";
 echo "to date = $to";
@@ -30,6 +30,10 @@ echo "orderbytime is = $orderbytime ";
 //if all empty, no search
 if (empty($arr)&&empty($from)&&empty($to)){
 	echo "empty";
+<html>
+<INPUT TYPE="button" VALUE="Back" onClick="history.go(-1);">
+
+</html>
 	//redirect back
 	}
 	
@@ -39,20 +43,20 @@ elseif (!empty($arr)){
 	if(!empty($from)&&!empty($to)){
 		if ($orderbytime=='1'){
 			$sql='select photo_id from images where 
-				CONTAINS(subject, \''.$arr.'\', 1)>0 
+				(CONTAINS(subject, \''.$arr.'\', 1)>0 
 				or CONTAINS(place, \''.$arr.'\', 2)>0
-				or CONTAINS(description, \''.$arr.'\', 3)>0 and timing between \''.$from.'\' and \''.$to.'\' order by timing desc';}
+				or CONTAINS(description, \''.$arr.'\', 3)>0) and timing between \''.$from.'\' and \''.$to.'\' order by timing desc';}
 				
 		elseif($orderbytime=='2'){
 			$sql='select photo_id from images where 
-				CONTAINS(subject, \''.$arr.'\', 1)>0 
+				(CONTAINS(subject, \''.$arr.'\', 1)>0 
 				or CONTAINS(place, \''.$arr.'\', 2)>0
-				or CONTAINS(description, \''.$arr.'\', 3)>0 and timing between \''.$from.'\' and \''.$to.'\' order by timing desc';}
+				or CONTAINS(description, \''.$arr.'\', 3)>0) and timing between \''.$from.'\' and \''.$to.'\' order by timing desc';}
 		else{		
 			$sql='select photo_id from images where 
-				CONTAINS(subject, \''.$arr.'\', 1)>0 
+				(CONTAINS(subject, \''.$arr.'\', 1)>0 
 				or CONTAINS(place, \''.$arr.'\', 2)>0
-				or CONTAINS(description, \''.$arr.'\', 3)>0 and timing between \''.$from.'\' and \''.$to.'\'
+				or CONTAINS(description, \''.$arr.'\', 3)>0) and timing between \''.$from.'\' and \''.$to.'\'
 				order by (rank() over (order by(6*score(1)+3*score(2)+score(3)) desc))';}	
 		echo "all parts";
 	}
@@ -203,3 +207,8 @@ if (!$conn) {
 
 
 ?>
+
+<html>
+<INPUT TYPE="button" VALUE="Back" onClick="history.go(-1);">
+
+</html>
