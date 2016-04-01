@@ -61,10 +61,11 @@ $username = $_SESSION['user-name'];
 		echo '<center><form method="post" action ="manageGroup.php"><input type="submit" name="submit" value="continue" /> </form></center>';
 	//check if friend exist as other user.
 	}else {
-	$sat = 'delete from group_lists where friend_id = :friend';
+	$sat = 'delete from group_lists where friend_id = :friend and group_id = :group_id';
 	
 	$done = oci_parse($conn, $sat);	
 	oci_bind_by_name($done, ':friend', $friend);
+	oci_bind_by_name($done, ':group_id',$result);
 	@oci_execute($done, OCI_DEFAULT);
 	
 	

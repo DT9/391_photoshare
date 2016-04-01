@@ -46,11 +46,11 @@ include("connection_database.php");
 		 	//echo "error";	    
 	    	exit;
 	    }
-	    else{
-	    	if ($user == "admin"){
+	    
+		 $_SESSION['user-name']="$user";
+    	if ($user == "admin"){
 	    	$_SESSION['admin'] = "admin";
-	    }
-		 $_SESSION['user-name']="$user";	    
+		}  
 	    header("Location: ./mainpage.php");
 	    
 	    echo "good good";
@@ -69,7 +69,7 @@ include("connection_database.php");
 */ 
 	    // Free the statement identifier when closing the connection
 
-	}
+	
 	?>
     </body>
 </html>

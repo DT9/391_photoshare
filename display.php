@@ -170,13 +170,13 @@
 						$sql = "select * from images where photo_id = '$id' and owner_name = '$user_name' ";
  					 	$stmt = oci_parse ($conn, $sql);
             		$res = oci_execute($stmt); 
-            		                     
+            	   print_r($_SESSION);	                     
  						$res = oci_fetch_array($stmt, OCI_ASSOC);    
 						if ($res['OWNER_NAME'] == $user_name ) {
                 	 echo '<button type="submit" name="edit" value="true" class="btn btn-primary">Submit</button>';
                 }
                 else if ($_SESSION['admin']) {
-                	 echo '<button type="submit" name="edit" value="true" class="btn btn-primary">Submit</button>';
+                	 echo '<button type="submit" name="edit" value="true" class="btn btn-primary">Submit Admin</button>';
                 }
                 ?>
             </form>
@@ -190,7 +190,7 @@
                 	 oci_free_statement($stmt);
                 }
          else if ($_SESSION['admin']) {
-                	 echo '<button type="submit" name="delete" value="true" class="btn btn-primary">Submit</button>';
+                	 echo '<button type="submit" name="delete" value="true" class="btn btn-primary">Delete Photo</button>';
                 }
                 oci_close($conn);
                 ?>
