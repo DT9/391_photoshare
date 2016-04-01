@@ -69,12 +69,11 @@ $username = $_SESSION['user-name'];
 	
 	
 	
-	oci_commit($conn);
+	
 	
 	oci_execute($done, OCI_DEFAULT);
 
-	
-	
+	oci_commit($conn);	
 //freq recent oldest
 	oci_free_statement($stmt);
 	oci_free_statement($stmt1);

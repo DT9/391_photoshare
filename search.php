@@ -41,14 +41,14 @@
             <div id="cabecera">
                 <div id="logo">
                     
-                    <h1><a id="top" href="mainpage.html">PHOTOSHARE</a></h1>
+                    <h1><a id="top" href="mainpage.php">PHOTOSHARE</a></h1>
                 </div>
                 <div id="nav">
                     <ul>
-                        <li><a href="mainpage.html">HOME</a></li>
+                        <li><a href="mainpage.php">HOME</a></li>
 
-                        <li><a href="profilepage.html">PROFILE</a></li>
-                        <li><a href="search.html">GROUPS</a></li>
+                        <li><a href="profilepage.php">PROFILE</a></li>
+                        <li><a href="search.php">GROUPS</a></li>
 
                         <li><a href="new_index.html">LOGOUT</a></li>
                     </ul>
@@ -77,7 +77,7 @@
             </div>                
                 
                 
-                <div id="up_der"><form id="gform" action="/search.html/" method="get" name="jumpto"><select name="c" onchange="javascript: submit();"><option value="0">Frequent</option><option value="1">Most Recent</option><option value="2">Oldest</option></select></form></div>
+                <div id="up_der"><form id="gform" action="/search.php/" method="get" name="jumpto"><select name="c" onchange="javascript: submit();"><option value="0">Frequent</option><option value="1">Most Recent</option><option value="2">Oldest</option></select></form></div>
             </div>
             
             
@@ -95,7 +95,7 @@
                 
                 <div id="pie_l">
                     <ul>
-                        <li><a href="mainpage.html">HOME</a></li>
+                        <li><a href="mainpage.php">HOME</a></li>
                     </ul>
                 </div>
                 <div id="pie_r">

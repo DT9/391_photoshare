@@ -76,11 +76,11 @@
             <div id="cabecera">
                 <div id="logo">
                     
-                    <h1><a id="top" href="mainpage.html">PHOTOSHARE</a></h1>
+                    <h1><a id="top" href="mainpage.php">PHOTOSHARE</a></h1>
                 </div>
                 <div id="nav">
                     <ul>
-                    <li><a href="mainpage.html">HOME</a></li>
+                    <li><a href="mainpage.php">HOME</a></li>
                     <li><a href="profilepage.php">PROFILE</a></li>
                    <li><a href="documentation/documentation_sample.html">HELP</a></li>
                     <li><a href="logout.php">LOGOUT</a></li>
@@ -209,7 +209,7 @@
                     
                     <div id="pie_l">
                         <ul>
-                            <li><a href="mainpage.html">HOME</a></li>
+                            <li><a href="mainpage.php">HOME</a></li>
                         </ul>
                     </div>
                     <div id="pie_r">
