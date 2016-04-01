@@ -12,12 +12,15 @@
           $c = $_POST['addr'];
           $d = $_POST['email'];
           $e = $_POST['phone'];
+
           if ($up) {
             $sql = 'update persons set first_name = \''.$a.'\', last_name = \''.$b.'\', address = \''.$c.'\', email = \''.$d.'\',phone  = \''.$e.'\' 
             where user_name = \''.$user.'\'';
+
+
             $stid = oci_parse($conn, $sql);        
             //Execute a statement returned from oci_parse()
-            $res=oci_execute($stid);
+            $res=@oci_execute($stid);
 
           }
 	      

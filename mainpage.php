@@ -61,8 +61,8 @@
             <div id="up_der">
                 <form id="gform" action="thumb.php" method="get" name="jumpto">
                     <select name="c" onchange="javascript: fivethumbs(this.value);">
-                    <option value="1">Most Recent</option>
-                    <option value="2">Oldest</option>
+                    <option value="1">Oldest</option>
+                    <option value="2">Most Recent</option>
                     <option value="3">Top Five</option>
                 </select></form>
             </div>

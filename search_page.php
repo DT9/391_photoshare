@@ -25,17 +25,17 @@ $to = $_REQUEST['to'];
 $keysearch = $_REQUEST['keysearch'];
 $orderbytime= $_REQUEST['c'];
 //get single word for keysearch
-echo $keysearch;
+//echo $keysearch;
 $arr=str_replace(' ', '&', $keysearch);
 
 
 
 
-echo "from date = $from";
-echo "to date = $to";
+echo "from date = $from ";
+echo "to date = $to ";
 echo "Keyword = $arr ";
 echo "orderbytime is = $orderbytime ";
-
+echo "<br/>";
 
 $querie_true='True'; 
 
@@ -69,12 +69,12 @@ elseif (!empty($arr)){
 				or CONTAINS(place, \''.$arr.'\', 2)>0
 				or CONTAINS(description, \''.$arr.'\', 3)>0) and timing between \''.$from.'\' and \''.$to.'\'
 				order by (rank() over (order by(6*score(1)+3*score(2)+score(3)) desc))';}	
-		echo "all parts";
+		//echo "all parts";
 	}
 	
 	//only subject
 	else if(empty($from)&&empty($to)){
-		echo "only subject";
+		//echo "only subject";
 		if ($orderbytime=='1'){	
 					$sql='select photo_id from images where 
 				CONTAINS(subject, \''.$arr.'\', 1)>0
@@ -101,7 +101,7 @@ elseif (!empty($arr)){
 	
 	//subject and to only	
 	elseif (empty($from)){
-		echo "subject and to only";	
+		//echo "subject and to only";	
 		if ($orderbytime=='1'){
 			$sql='select photo_id from images where 
 				(CONTAINS(subject, \''.$arr.'\', 1)>0
@@ -143,7 +143,7 @@ elseif (!empty($arr)){
 				or CONTAINS(place, \''.$arr.'\', 2)>0
 				or CONTAINS(description, \''.$arr.'\', 3)>0) and timing between \''.$from.'\' and sysdate
 				order by (rank() over (order by(6*score(1)+3*score(2)+score(3)) desc))';}	
-		echo "subject and from only";
+		//echo "subject and from only";
 	}
 }
 
@@ -159,7 +159,7 @@ elseif (!empty($from)&&!empty($to)){
 		$sql='select photo_id from images where timing between \''.$from.'\' and \''.$to.'\'';	
 	}
 	//$sql1='select count(photo_id) from images where timing between \''.$from.'\' and \''.$to.'\'';	
-	echo "all date no subject";
+	//echo "all date no subject";
 	}
 	
 //else if from date entered only
@@ -171,7 +171,7 @@ elseif (empty($to)){
 		$sql= 'select photo_id from images where timing between \''.$from.'\' and sysdate order by timing asc';	
 		}
 	else {$sql=	'select photo_id from images where timing between \''.$from.'\' and sysdate';	}
-	echo "date from only";
+	//echo "date from only";
 	}
 	
 //else, if to date empty 
@@ -185,11 +185,12 @@ else {
 	else {
 	$sql= 'select photo_id from images where timing between (select min(timing) from images) and \''.$to.'\'';	
 	}
-	echo "date to only";}
+	//echo "date to only";
+}
 
+//echo $sql;
 
-echo $sql;
-echo "number of pics: $sql1";
+//echo "number of pics: $sql1";
 
      $conn = connect();   
      rebuild($conn);

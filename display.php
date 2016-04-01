@@ -196,7 +196,7 @@
                 ?>
         </form>
         <br>
-
+<INPUT TYPE="button" VALUE="Back" onClick="history.go(-1);">
         <div id="pie">
             <div id="pie_l">
                 <ul>
@@ -212,6 +212,7 @@
 
 
     </div>
+
 
 </body>
 
